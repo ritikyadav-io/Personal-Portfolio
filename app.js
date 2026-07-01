@@ -697,3 +697,55 @@ function updateClickerUI() {
     bar.classList.remove('danger');
   }
 }
+
+// Live Console Operations Simulator
+document.addEventListener('DOMContentLoaded', () => {
+  const consoleBody = document.getElementById('live-console-body');
+  if (consoleBody) {
+    const logs = [
+      { type: 'info', msg: 'Checking ingestion pipelines status...' },
+      { type: 'success', msg: 'Ingested 50k rows from API source [s3://raw-bucket]' },
+      { type: 'info', msg: 'Triggering PySpark ETL partition mapping job...' },
+      { type: 'success', msg: 'Glue dynamic frame partition write: SUCCESS (4.1s)' },
+      { type: 'info', msg: 'Auto-refreshing Power BI analytics cache gateway...' },
+      { type: 'success', msg: 'Power BI cache updated. Telemetry metrics in sync.' },
+      { type: 'info', msg: 'Auditing PostgreSQL db metrics: connections look stable.' },
+      { type: 'warning', msg: 'Warning: Ingestion API rate limit is at 74% capacity.' },
+      { type: 'info', msg: 'Claude semantic matching model evaluation complete.' },
+      { type: 'success', msg: 'Match algorithm execution score: 95.8% precision.' },
+      { type: 'info', msg: 'Polling AWS S3 logs: Listening for new telemetry events...' }
+    ];
+
+    let logIndex = 0;
+    
+    setInterval(() => {
+      // Remove cursor line
+      const cursorLine = consoleBody.querySelector('.cursor-line');
+      if (cursorLine) cursorLine.remove();
+
+      // Format time
+      const now = new Date();
+      const timeStr = `[${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}]`;
+
+      const log = logs[logIndex];
+      const tagClass = log.type;
+      const tagText = log.type.toUpperCase();
+
+      const line = document.createElement('div');
+      line.className = 'console-line';
+      line.innerHTML = `<span class="c-time">${timeStr}</span> <span class="c-tag ${tagClass}">[${tagText}]</span> ${log.msg}`;
+      consoleBody.appendChild(line);
+
+      // Re-add cursor line
+      const cursor = document.createElement('div');
+      cursor.className = 'console-line cursor-line';
+      cursor.innerHTML = `<span class="c-time">${timeStr}</span> <span class="c-tag info">[INFO]</span> Listening for next event...<span class="console-cursor">_</span>`;
+      consoleBody.appendChild(cursor);
+
+      // Scroll to bottom
+      consoleBody.scrollTop = consoleBody.scrollHeight;
+
+      logIndex = (logIndex + 1) % logs.length;
+    }, 4000);
+  }
+});

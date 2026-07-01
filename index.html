@@ -31,7 +31,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="style.css?v=1.2.2">
+  <link rel="stylesheet" href="style.css?v=1.2.3">
 
   <!-- Critical Theme Script: Avoids layout visual flash -->
   <script>
@@ -341,41 +341,23 @@
               Relentless about clean code execution, performance constraints, and startup speed. Shipped 7 fully-featured production projects in a 5-month self-study journey covering data fundamentals from spreadsheet calculations to cloud services mapping.
             </p>
 
-            <!-- AWS Pipeline Flowchart (Fills Left Column height gap on desktop) -->
-            <div class="pipeline-visual-card">
-              <h4>💡 AWS Data Pipeline Architecture</h4>
-              <p class="pipeline-subtitle">Serverless workflow design for multi-source ingestion &amp; transformation</p>
-              
-              <div class="pipeline-flow">
-                <div class="flow-step">
-                  <div class="step-icon">🔌</div>
-                  <span class="step-name">Sources</span>
-                  <span class="step-tech">APIs / CSVs</span>
+            <!-- Live Cloud Console Widget (Replaces Pipeline Flowchart) -->
+            <div class="pipeline-visual-card console-card">
+              <div class="console-header">
+                <div class="console-dot-group">
+                  <span class="console-dot red"></span>
+                  <span class="console-dot yellow"></span>
+                  <span class="console-dot green"></span>
                 </div>
-                <div class="flow-connector">→</div>
-                <div class="flow-step">
-                  <div class="step-icon">⚡</div>
-                  <span class="step-name">Ingest</span>
-                  <span class="step-tech">AWS Lambda</span>
-                </div>
-                <div class="flow-connector">→</div>
-                <div class="flow-step">
-                  <div class="step-icon">📦</div>
-                  <span class="step-name">Data Lake</span>
-                  <span class="step-tech">Amazon S3</span>
-                </div>
-                <div class="flow-connector">→</div>
-                <div class="flow-step">
-                  <div class="step-icon">🔧</div>
-                  <span class="step-name">ETL / Transform</span>
-                  <span class="step-tech">AWS Glue</span>
-                </div>
-                <div class="flow-connector">→</div>
-                <div class="flow-step">
-                  <div class="step-icon">🗄️</div>
-                  <span class="step-name">Warehouse</span>
-                  <span class="step-tech">Amazon RDS</span>
-                </div>
+                <span class="console-title">📊 Live Cloud Operations Console</span>
+                <span class="console-status-badge">ONLINE</span>
+              </div>
+              <div class="console-body" id="live-console-body">
+                <div class="console-line"><span class="c-time">[13:20:05]</span> <span class="c-tag info">[INFO]</span> Initializing Cloud Engine telemetry...</div>
+                <div class="console-line"><span class="c-time">[13:20:06]</span> <span class="c-tag success">[SUCCESS]</span> Supabase PostgreSQL connection verified.</div>
+                <div class="console-line"><span class="c-time">[13:20:08]</span> <span class="c-tag info">[INFO]</span> AWS Lambda triggers listening on s3://portfolio-data-lake</div>
+                <div class="console-line"><span class="c-time">[13:20:10]</span> <span class="c-tag warning">[WARN]</span> Glue schema drift check: No anomalies detected.</div>
+                <div class="console-line cursor-line"><span class="c-time">[13:20:12]</span> <span class="c-tag info">[INFO]</span> Ready to process stream...<span class="console-cursor">_</span></div>
               </div>
             </div>
 
@@ -1350,6 +1332,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=1.2.2"></script>
+  <script src="app.js?v=1.2.3"></script>
 </body>
 </html>
