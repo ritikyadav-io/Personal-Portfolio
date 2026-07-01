@@ -440,22 +440,37 @@ document.addEventListener('DOMContentLoaded', () => {
       successAlert.classList.add('hide');
       errorAlert.classList.add('hide');
 
-      // Simulate asynchronous server API request (1.5 seconds)
-      setTimeout(() => {
+      const nameVal = nameInput.value.trim();
+      const emailVal = emailInput.value.trim();
+      const msgVal = messageInput.value.trim();
+
+      // Submit via FormSubmit API
+      fetch("https://formsubmit.co/ajax/yadavritik2027@gmail.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: nameVal,
+          email: emailVal,
+          message: msgVal,
+          _subject: `New Portfolio message from ${nameVal}`
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('API server responded with error');
+        }
+        return response.json();
+      })
+      .then(data => {
         // Reset button states
         btnText.textContent = 'Submit Message';
         spinner.classList.add('hide');
         submitBtn.removeAttribute('disabled');
 
-        // Trigger system mail client prefill
-        const nameVal = nameInput.value.trim();
-        const emailVal = emailInput.value.trim();
-        const msgVal = messageInput.value.trim();
-        const mailtoUrl = `mailto:yadavritik2027@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(nameVal)}&body=${encodeURIComponent(msgVal)}%0A%0A---%0ASender Contact: ${encodeURIComponent(nameVal)} (${encodeURIComponent(emailVal)})`;
-        
-        window.location.href = mailtoUrl;
-
-        // Form Success flow simulation
+        // Form Success flow
         successAlert.classList.remove('hide');
         contactForm.reset();
         
@@ -468,8 +483,27 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           successAlert.classList.add('hide');
         }, 8000);
+      })
+      .catch(error => {
+        console.warn('FormSubmit failed, falling back to mailto:', error);
+        
+        // Reset button states
+        btnText.textContent = 'Submit Message';
+        spinner.classList.add('hide');
+        submitBtn.removeAttribute('disabled');
 
-      }, 1500);
+        // Fallback to pre-filled email client link
+        const mailtoUrl = `mailto:yadavritik2027@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(nameVal)}&body=${encodeURIComponent(msgVal)}%0A%0A---%0ASender Contact: ${encodeURIComponent(nameVal)} (${encodeURIComponent(emailVal)})`;
+        window.location.href = mailtoUrl;
+
+        // Show fallback alert info
+        errorAlert.textContent = "Opening your system mail application to send message...";
+        errorAlert.classList.remove('hide');
+
+        setTimeout(() => {
+          errorAlert.classList.add('hide');
+        }, 6000);
+      });
     });
   }
 
