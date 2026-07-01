@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%" style="background:#0b0f19; font-family:system-ui, sans-serif;">
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="warmGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="#0b0f19"/>
+  <rect width="600" height="400" fill="url(#grid)"/>
+
+  <!-- Main Window -->
+  <rect x="50" y="50" width="500" height="300" rx="12" fill="#131b2e" stroke="#1e293b" stroke-width="2"/>
+  
+  <!-- Header -->
+  <path d="M50 80 L550 80" stroke="#1e293b" stroke-width="1.5"/>
+  <circle cx="70" cy="65" r="5" fill="#ef4444"/>
+  <circle cx="85" cy="65" r="5" fill="#f59e0b"/>
+  <circle cx="100" cy="65" r="5" fill="#10b981"/>
+  <text x="300" y="68" fill="#64748b" font-size="11" font-weight="600" text-anchor="middle" letter-spacing="1">GUSTO BISTRO</text>
+
+  <!-- Hero Image Panel Mockup -->
+  <rect x="70" y="100" width="460" height="110" rx="8" fill="url(#warmGrad)"/>
+  <!-- Decorative Abstract Circles for Food Art -->
+  <circle cx="430" cy="155" r="35" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="410" cy="155" r="25" fill="rgba(255,255,255,0.1)"/>
+  <text x="95" y="145" fill="#ffffff" font-size="20" font-weight="800">Experience Fine Dining</text>
+  <text x="95" y="165" fill="#fef3c7" font-size="10" font-weight="500">Taste the fusion of standard and modern recipes.</text>
+  
+  <!-- Book Table CTA on Banner -->
+  <rect x="95" y="180" width="90" height="20" rx="4" fill="#ffffff"/>
+  <text x="140" y="193" fill="#b45309" font-size="9" font-weight="bold" text-anchor="middle">Book a Table</text>
+
+  <!-- Menu Preview Items -->
+  <rect x="70" y="225" width="145" height="95" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <rect x="82" y="240" width="30" height="30" rx="4" fill="#1e293b"/>
+  <text x="120" y="252" fill="#ffffff" font-size="10" font-weight="bold">Smoked Salmon</text>
+  <text x="120" y="265" fill="#f59e0b" font-size="9">$24.00</text>
+  <rect x="82" y="285" width="120" height="4" rx="2" fill="#334155"/>
+  <rect x="82" y="295" width="90" height="4" rx="2" fill="#334155"/>
+
+  <rect x="227" y="225" width="145" height="95" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <rect x="239" y="240" width="30" height="30" rx="4" fill="#1e293b"/>
+  <text x="277" y="252" fill="#ffffff" font-size="10" font-weight="bold">Truffle Pasta</text>
+  <text x="277" y="265" fill="#f59e0b" font-size="9">$19.50</text>
+  <rect x="239" y="285" width="120" height="4" rx="2" fill="#334155"/>
+  <rect x="239" y="295" width="90" height="4" rx="2" fill="#334155"/>
+
+  <!-- WhatsApp Booking Box -->
+  <rect x="385" y="225" width="145" height="95" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="400" y="245" fill="#ffffff" font-size="10" font-weight="bold">Quick Booking</text>
+  <text x="400" y="260" fill="#64748b" font-size="8">Book via WhatsApp in seconds</text>
+  
+  <rect x="400" y="280" width="115" height="25" rx="12" fill="#059669"/>
+  <!-- WhatsApp Logo Icon representation -->
+  <circle cx="415" cy="292" r="5" fill="#ffffff"/>
+  <text x="462" y="296" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">WhatsApp Us</text>
+</svg>

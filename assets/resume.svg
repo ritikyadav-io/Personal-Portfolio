@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%" style="background:#0b0f19; font-family:system-ui, sans-serif;">
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="scanGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="#0b0f19"/>
+  <rect width="600" height="400" fill="url(#grid)"/>
+
+  <!-- Main Window -->
+  <rect x="50" y="50" width="500" height="300" rx="12" fill="#131b2e" stroke="#1e293b" stroke-width="2"/>
+  
+  <!-- Header -->
+  <path d="M50 80 L550 80" stroke="#1e293b" stroke-width="1.5"/>
+  <circle cx="70" cy="65" r="5" fill="#ef4444"/>
+  <circle cx="85" cy="65" r="5" fill="#f59e0b"/>
+  <circle cx="100" cy="65" r="5" fill="#10b981"/>
+  <text x="300" y="68" fill="#64748b" font-size="11" font-weight="600" text-anchor="middle" letter-spacing="1">ATS RESUME SCANNER</text>
+
+  <!-- Left: Resume Sheet Mockup -->
+  <rect x="70" y="100" width="190" height="230" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  
+  <!-- Resume text mock line -->
+  <rect x="90" y="120" width="60" height="8" rx="2" fill="#3b82f6"/>
+  <rect x="90" y="140" width="150" height="4" rx="1" fill="#475569"/>
+  <rect x="90" y="150" width="130" height="4" rx="1" fill="#475569"/>
+  
+  <rect x="90" y="170" width="50" height="6" rx="2" fill="#334155"/>
+  <rect x="90" y="185" width="140" height="4" rx="1" fill="#475569"/>
+  <rect x="90" y="195" width="120" height="4" rx="1" fill="#475569"/>
+  <rect x="90" y="205" width="150" height="4" rx="1" fill="#475569"/>
+  
+  <rect x="90" y="225" width="50" height="6" rx="2" fill="#334155"/>
+  <rect x="90" y="240" width="140" height="4" rx="1" fill="#475569"/>
+  <rect x="90" y="250" width="135" height="4" rx="1" fill="#475569"/>
+
+  <!-- Scanner Line -->
+  <rect x="70" y="160" width="190" height="40" fill="url(#scanGrad)" opacity="0.7"/>
+  <line x1="70" y1="200" x2="260" y2="200" stroke="#3b82f6" stroke-width="2"/>
+
+  <!-- Right: Score Panel -->
+  <rect x="280" y="100" width="250" height="230" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <text x="405" y="125" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">ATS Analysis Results</text>
+
+  <!-- Score Ring -->
+  <circle cx="405" cy="195" r="45" fill="none" stroke="#1e293b" stroke-width="10"/>
+  <circle cx="405" cy="195" r="45" fill="none" stroke="#10b981" stroke-width="10" stroke-dasharray="283" stroke-dashoffset="28"/>
+  <text x="405" y="198" fill="#ffffff" font-size="20" font-weight="bold" text-anchor="middle">90</text>
+  <text x="405" y="213" fill="#64748b" font-size="8" text-anchor="middle">ATS COMPATIBILITY</text>
+
+  <!-- Suggestions list -->
+  <rect x="300" y="260" width="210" height="22" rx="4" fill="#065f46" opacity="0.3"/>
+  <circle cx="315" cy="271" r="3" fill="#10b981"/>
+  <text x="330" y="274" fill="#34d399" font-size="9" font-weight="600">✓ Keywords added: AWS, Pandas, ETL</text>
+
+  <rect x="300" y="290" width="210" height="22" rx="4" fill="#78350f" opacity="0.3"/>
+  <circle cx="315" cy="301" r="3" fill="#f59e0b"/>
+  <text x="330" y="304" fill="#fbbf24" font-size="9" font-weight="600">⚠ Action verbs can be optimized</text>
+</svg>

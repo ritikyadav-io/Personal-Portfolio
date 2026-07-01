@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%" style="background:#0b0f19; font-family:system-ui, sans-serif;">
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="cyanGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="#0b0f19"/>
+  <rect width="600" height="400" fill="url(#grid)"/>
+
+  <!-- Main Window -->
+  <rect x="50" y="50" width="500" height="300" rx="12" fill="#131b2e" stroke="#1e293b" stroke-width="2"/>
+  
+  <!-- Header -->
+  <path d="M50 80 L550 80" stroke="#1e293b" stroke-width="1.5"/>
+  <circle cx="70" cy="65" r="5" fill="#ef4444"/>
+  <circle cx="85" cy="65" r="5" fill="#f59e0b"/>
+  <circle cx="100" cy="65" r="5" fill="#10b981"/>
+  <text x="300" y="68" fill="#64748b" font-size="11" font-weight="600" text-anchor="middle" letter-spacing="1">CLINICPORTAL</text>
+
+  <!-- Left: Calendar Booking Slots -->
+  <rect x="70" y="100" width="230" height="230" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <text x="85" y="125" fill="#ffffff" font-size="12" font-weight="bold">Select Time Slot</text>
+
+  <!-- Slot Grid -->
+  <rect x="85" y="145" width="90" height="35" rx="6" fill="#1e293b" stroke="#334155"/>
+  <text x="130" y="166" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">09:00 AM</text>
+  
+  <rect x="190" y="145" width="90" height="35" rx="6" fill="url(#cyanGrad)"/>
+  <text x="235" y="166" fill="#ffffff" font-size="10" font-weight="bold" text-anchor="middle">10:30 AM</text>
+
+  <rect x="85" y="195" width="90" height="35" rx="6" fill="#1e293b" stroke="#334155"/>
+  <text x="130" y="216" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">11:00 AM</text>
+
+  <rect x="190" y="195" width="90" height="35" rx="6" fill="#1e293b" stroke="#334155" opacity="0.4"/>
+  <text x="235" y="216" fill="#475569" font-size="10" font-weight="bold" text-anchor="middle">02:30 PM (Full)</text>
+
+  <rect x="85" y="245" width="90" height="35" rx="6" fill="#1e293b" stroke="#334155"/>
+  <text x="130" y="266" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">04:00 PM</text>
+
+  <rect x="190" y="245" width="90" height="35" rx="6" fill="#1e293b" stroke="#334155"/>
+  <text x="235" y="266" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">05:30 PM</text>
+
+  <!-- Right: Patient Info & UPI Payment Status -->
+  <rect x="315" y="100" width="215" height="230" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <text x="330" y="125" fill="#ffffff" font-size="12" font-weight="bold">Appointment Summary</text>
+  
+  <text x="330" y="155" fill="#64748b" font-size="10">PATIENT</text>
+  <text x="330" y="170" fill="#ffffff" font-size="11" font-weight="bold">Rohan Sharma</text>
+
+  <text x="330" y="195" fill="#64748b" font-size="10">DOCTOR</text>
+  <text x="330" y="210" fill="#06b6d4" font-size="11" font-weight="bold">Dr. A. K. Verma (Cardio)</text>
+
+  <path d="M330 230 L515 230" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- UPI Success Badge -->
+  <rect x="330" y="255" width="185" height="55" rx="8" fill="#065f46" opacity="0.3" stroke="#10b981" stroke-width="1"/>
+  <circle cx="355" cy="282" r="10" fill="#10b981"/>
+  <path d="M351 282 L354 285 L359 279" fill="none" stroke="#ffffff" stroke-width="2"/>
+  <text x="375" y="278" fill="#ffffff" font-size="11" font-weight="bold">UPI Payment Verified</text>
+  <text x="375" y="292" fill="#34d399" font-size="9">TXN: 928301827412 • ₹500</text>
+</svg>
