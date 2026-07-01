@@ -698,54 +698,53 @@ function updateClickerUI() {
   }
 }
 
-// Live Console Operations Simulator
-document.addEventListener('DOMContentLoaded', () => {
-  const consoleBody = document.getElementById('live-console-body');
-  if (consoleBody) {
-    const logs = [
-      { type: 'info', msg: 'Checking ingestion pipelines status...' },
-      { type: 'success', msg: 'Ingested 50k rows from API source [s3://raw-bucket]' },
-      { type: 'info', msg: 'Triggering PySpark ETL partition mapping job...' },
-      { type: 'success', msg: 'Glue dynamic frame partition write: SUCCESS (4.1s)' },
-      { type: 'info', msg: 'Auto-refreshing Power BI analytics cache gateway...' },
-      { type: 'success', msg: 'Power BI cache updated. Telemetry metrics in sync.' },
-      { type: 'info', msg: 'Auditing PostgreSQL db metrics: connections look stable.' },
-      { type: 'warning', msg: 'Warning: Ingestion API rate limit is at 74% capacity.' },
-      { type: 'info', msg: 'Claude semantic matching model evaluation complete.' },
-      { type: 'success', msg: 'Match algorithm execution score: 95.8% precision.' },
-      { type: 'info', msg: 'Polling AWS S3 logs: Listening for new telemetry events...' }
+// Recruiter Cheat Codes Interaction
+function triggerCheatCode(code) {
+  const consoleBody = document.getElementById('recruiter-console-body');
+  if (!consoleBody) return;
+
+  // Clear previous log lines
+  consoleBody.innerHTML = '';
+
+  const now = new Date();
+  const timeStr = `[${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}]`;
+
+  let logs = [];
+
+  if (code === 'bypass') {
+    logs = [
+      `<span class="c-time">${timeStr}</span> <span class="c-tag info">[PROCESS]</span> Bypassing HR keyword screening...`,
+      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[SCANNER]</span> Resume score: 99.9% (Over-indexed on SQL &amp; AWS)`,
+      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[SUCCESS]</span> Bypassed! Direct final technical round with CTO scheduled.`
     ];
+  } else if (code === 'salary') {
+    logs = [
+      `<span class="c-time">${timeStr}</span> <span class="c-tag info">[FINANCE]</span> Evaluating compensation parameter limits...`,
+      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[UPGRADE]</span> Base salary increased +20% + stock options.`,
+      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[SUCCESS]</span> Ritik's motivation increased by 200%. Contract ready.`
+    ];
+  } else if (code === 'culture') {
+    logs = [
+      `<span class="c-time">${timeStr}</span> <span class="c-tag info">[QUERY]</span> Querying ritik_personality_attributes...`,
+      `<span class="c-time">${timeStr}</span> <span class="c-tag warning">[STATS]</span> Coffee intake: 4.2 L/day | Meme sharing capacity: High`,
+      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[SUCCESS]</span> 100% culture fit. Ready for standups and pizza parties.`
+    ];
+  } else if (code === 'hire') {
+    logs = [
+      `<span class="c-time">${timeStr}</span> <span class="c-tag info">[ONBOARD]</span> Initializing onboarding automated sequence...`,
+      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[PIPELINE]</span> Created profile: @ritikyadav | Slack workspace ready.`,
+      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[FIREWORKS]</span> Offer letter sent to yadavritik2027@gmail.com!`
+    ];
+  }
 
-    let logIndex = 0;
-    
-    setInterval(() => {
-      // Remove cursor line
-      const cursorLine = consoleBody.querySelector('.cursor-line');
-      if (cursorLine) cursorLine.remove();
-
-      // Format time
-      const now = new Date();
-      const timeStr = `[${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}]`;
-
-      const log = logs[logIndex];
-      const tagClass = log.type;
-      const tagText = log.type.toUpperCase();
-
+  // Print logs sequentially for terminal typing effect
+  logs.forEach((logLine, index) => {
+    setTimeout(() => {
       const line = document.createElement('div');
       line.className = 'console-line';
-      line.innerHTML = `<span class="c-time">${timeStr}</span> <span class="c-tag ${tagClass}">[${tagText}]</span> ${log.msg}`;
+      line.innerHTML = logLine;
       consoleBody.appendChild(line);
-
-      // Re-add cursor line
-      const cursor = document.createElement('div');
-      cursor.className = 'console-line cursor-line';
-      cursor.innerHTML = `<span class="c-time">${timeStr}</span> <span class="c-tag info">[INFO]</span> Listening for next event...<span class="console-cursor">_</span>`;
-      consoleBody.appendChild(cursor);
-
-      // Scroll to bottom
       consoleBody.scrollTop = consoleBody.scrollHeight;
-
-      logIndex = (logIndex + 1) % logs.length;
-    }, 4000);
-  }
-});
+    }, index * 400);
+  });
+}

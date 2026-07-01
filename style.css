@@ -1025,6 +1025,56 @@ h1, h2, h3, h4, h5, h6 {
   animation: console-blink 1s infinite;
   color: #7ee787;
 }
+/* Recruiter Cheat Code Widget Styles */
+.recruiter-body {
+  padding: 12px;
+  background-color: var(--bg-card);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.recruiter-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.recruiter-btn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.recruiter-btn {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition-fast) ease-in-out;
+  text-align: center;
+  outline: none;
+}
+
+.recruiter-btn:hover {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  border-color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+.recruiter-btn:active {
+  transform: scale(0.97);
+}
 
 @keyframes pulse-arrow {
   0%, 100% { opacity: 0.4; transform: scale(1); }
