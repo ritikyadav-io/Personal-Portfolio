@@ -2560,21 +2560,23 @@ h1, h2, h3, h4, h5, h6 {
     gap: 10px !important;
   }
 
-  /* Card and Spacing Layouts - Smaller Compact Boxes */
-  .profile-card, .skills-card, .number-card, .timeline-content, .contact-form-card, .pipeline-visual-card {
-    padding: 16px !important;
+  /* Card and Spacing Layouts - iOS Style Small Compact Boxes */
+  .profile-card, .skills-card, .number-card, .timeline-content, .contact-form-card, .pipeline-visual-card, .career-goals-box, .about-edu-card {
+    padding: 12px 14px !important;
     width: 100% !important;
-    border-radius: 8px !important;
-    box-shadow: var(--shadow-sm) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04) !important;
     box-sizing: border-box !important;
+    border: 1px solid var(--border-color) !important;
   }
 
   .bento-card {
     padding: 0 !important;
     width: 100% !important;
-    border-radius: 8px !important;
-    box-shadow: var(--shadow-sm) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04) !important;
     box-sizing: border-box !important;
+    border: 1px solid var(--border-color) !important;
   }
 
   .project-content {
@@ -2646,11 +2648,11 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Visual Resume Stacking & PDF Viewer Simulation */
   .resume-visual-card {
-    padding: 16px !important;
-    max-height: 380px; /* Compact box look */
+    padding: 12px 14px !important;
+    max-height: 330px; /* Capped for compact PDF preview look */
     overflow-y: auto;
     border: 1px solid #CBD5E1 !important;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.04), var(--shadow-md) !important;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.04), var(--shadow-sm) !important;
     background-color: #F8FAFC !important;
     scrollbar-width: thin;
     scrollbar-color: #CBD5E1 #F8FAFC;
@@ -2860,6 +2862,16 @@ h1, h2, h3, h4, h5, h6 {
   .quiz-question {
     font-size: 11px !important;
     padding: 8px !important;
+  }
+
+  /* Prevent SQL Sandbox output from clipping or hiding elements on mobile */
+  .sql-output-log {
+    max-height: 180px !important;
+    overflow-y: auto !important;
+    overflow-x: auto !important;
+    font-size: 9.5px !important;
+    padding: 8px !important;
+    white-space: pre !important;
   }
 
   /* Clicker Game button stacking to prevent card stretching */
