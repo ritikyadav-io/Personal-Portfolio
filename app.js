@@ -698,16 +698,86 @@ function updateClickerUI() {
   }
 }
 
-// Live Data Ingestion Telemetry Simulator
-document.addEventListener('DOMContentLoaded', () => {
-  const teleVolumeEl = document.getElementById('tele-volume');
-  if (teleVolumeEl) {
-    let volume = 248.62;
-    setInterval(() => {
-      // Random increment between 0.01 and 0.05 GB (10 to 50 MB)
-      const increment = Math.random() * 0.04 + 0.01;
-      volume += increment;
-      teleVolumeEl.textContent = volume.toFixed(2) + ' GB';
-    }, 2500);
+// Cloud Architect Optimizer Game logic
+function updateOptimizer() {
+  const chkRedshift = document.getElementById('opt-chk-redshift');
+  const chkGlue = document.getElementById('opt-chk-glue');
+  const chkLambda = document.getElementById('opt-chk-lambda');
+  const chkRds = document.getElementById('opt-chk-rds');
+  
+  const perfEl = document.getElementById('opt-perf');
+  const costEl = document.getElementById('opt-cost');
+  const logEl = document.getElementById('optimizer-status-log');
+  
+  if (!chkRedshift || !chkGlue || !chkLambda || !chkRds) return;
+
+  let cost = 0;
+  let perf = 0;
+
+  if (chkRedshift.checked) { cost += 180; perf += 50; }
+  if (chkGlue.checked) { cost += 70; perf += 20; }
+  if (chkLambda.checked) { cost += 30; perf += 15; }
+  if (chkRds.checked) { cost += 20; perf += 15; }
+
+  perfEl.textContent = perf + '%';
+  costEl.textContent = '$' + cost;
+
+  // Real-time evaluation status feedback
+  logEl.style.color = '#8b949e';
+  if (cost > 300) {
+    logEl.textContent = '🔥 ERROR: Budget exceeded! Keep cost under $300.';
+    logEl.style.color = '#ef4444';
+    perfEl.style.color = '#ef4444';
+    costEl.style.color = '#ef4444';
+  } else {
+    perfEl.style.color = 'var(--text-primary)';
+    costEl.style.color = 'var(--text-primary)';
+    if (cost === 0) {
+      logEl.textContent = 'Ready to evaluate cloud layout...';
+    } else if (!chkRds.checked) {
+      logEl.textContent = '⚠ WARNING: Database (RDS) offline. Performance degraded.';
+      logEl.style.color = '#f59e0b';
+    } else if (!chkGlue.checked && !chkLambda.checked) {
+      logEl.textContent = '⚠ WARNING: No ETL ingestion running (Glue/Lambda).';
+      logEl.style.color = '#f59e0b';
+    } else {
+      logEl.textContent = '✅ Architecture complies with budget limits.';
+      logEl.style.color = '#10b981';
+    }
   }
-});
+}
+
+function deployOptimizerStack() {
+  const chkRedshift = document.getElementById('opt-chk-redshift');
+  const chkGlue = document.getElementById('opt-chk-glue');
+  const chkLambda = document.getElementById('opt-chk-lambda');
+  const chkRds = document.getElementById('opt-chk-rds');
+  const logEl = document.getElementById('optimizer-status-log');
+
+  if (!chkRedshift || !chkGlue || !chkLambda || !chkRds) return;
+
+  let cost = 0;
+  let perf = 0;
+
+  if (chkRedshift.checked) { cost += 180; perf += 50; }
+  if (chkGlue.checked) { cost += 70; perf += 20; }
+  if (chkLambda.checked) { cost += 30; perf += 15; }
+  if (chkRds.checked) { cost += 20; perf += 15; }
+
+  if (cost > 300) {
+    logEl.textContent = '❌ DEPLOY FAILED: Budget overflow ($' + cost + ' > $300). Reduce costs!';
+    logEl.style.color = '#ef4444';
+  } else if (cost === 0) {
+    logEl.textContent = '❌ DEPLOY FAILED: Select resources before deploying.';
+    logEl.style.color = '#ef4444';
+  } else if (!chkRds.checked) {
+    logEl.textContent = '❌ DEPLOY FAILED: Critical database node missing.';
+    logEl.style.color = '#ef4444';
+  } else if (perf < 90) {
+    logEl.textContent = '❌ DEPLOY FAILED: Performance too low (' + perf + '% < 90%). Optimize layout.';
+    logEl.style.color = '#ef4444';
+  } else {
+    logEl.textContent = '🎉 SUCCESS: Stack Live! Cost: $' + cost + '/mo | Perf: ' + perf + '%! Recruiters gain +500 XP!';
+    logEl.style.color = '#10b981';
+  }
+}

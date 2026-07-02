@@ -982,8 +982,8 @@ h1, h2, h3, h4, h5, h6 {
   animation: pulse-arrow 2s infinite ease-in-out;
 }
 
-/* Telemetry Widget Styles */
-.telemetry-body {
+/* Cloud Cost Optimizer Game Styles */
+.optimizer-body {
   padding: 12px;
   background-color: var(--bg-card);
   border-bottom-left-radius: 12px;
@@ -993,13 +993,21 @@ h1, h2, h3, h4, h5, h6 {
   gap: 10px;
 }
 
-.telemetry-grid {
+.optimizer-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.optimizer-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
+  margin-bottom: 4px;
 }
 
-.telemetry-stat {
+.opt-stat {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -1007,7 +1015,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
-.tele-lbl {
+.opt-stat-lbl {
   display: block;
   font-size: 8px;
   font-weight: 600;
@@ -1016,51 +1024,65 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.05em;
 }
 
-.tele-val {
+.opt-stat-val {
   display: block;
   font-size: 11px;
   font-weight: 800;
   color: var(--text-primary);
   margin-top: 2px;
+  transition: color var(--transition-fast);
 }
 
-.tele-val.text-success {
-  color: #10b981;
-}
-
-.tele-val.text-primary {
-  color: var(--accent-primary);
-}
-
-.telemetry-list {
+.opt-switches {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
+  margin-bottom: 6px;
 }
 
-.telemetry-item {
+.opt-switch-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 8px;
+  font-size: 10.5px;
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 4px 6px;
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 6px;
-  padding: 6px 10px;
+  transition: border-color var(--transition-fast);
 }
 
-.item-name {
+.opt-switch-item:hover {
+  border-color: var(--accent-primary);
+}
+
+.opt-switch-item input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--accent-primary);
+}
+
+.switch-lbl {
+  font-weight: 500;
+}
+
+.optimizer-log {
+  background-color: #0d1117;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 10px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.item-status {
-  font-size: 9px;
-  font-weight: 700;
-}
-
-.item-status.healthy {
-  color: #10b981;
+  line-height: 1.4;
+  margin-top: 8px;
+  min-height: 36px;
+  color: #8b949e;
+  text-align: left;
 }
 
 @keyframes pulse-arrow {
