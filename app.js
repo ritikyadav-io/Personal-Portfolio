@@ -698,86 +698,178 @@ function updateClickerUI() {
   }
 }
 
-// Cloud Architect Optimizer Game logic
-function updateOptimizer() {
-  const chkRedshift = document.getElementById('opt-chk-redshift');
-  const chkGlue = document.getElementById('opt-chk-glue');
-  const chkLambda = document.getElementById('opt-chk-lambda');
-  const chkRds = document.getElementById('opt-chk-rds');
-  
-  const perfEl = document.getElementById('opt-perf');
-  const costEl = document.getElementById('opt-cost');
-  const logEl = document.getElementById('optimizer-status-log');
-  
-  if (!chkRedshift || !chkGlue || !chkLambda || !chkRds) return;
+// AWS Trivia Challenge Game logic
+const awsQuestions = [
+  {
+    id: 1,
+    type: 'single',
+    question: 'Which AWS service crawls data sources, identifies formats, and populates the Glue Data Catalog with schema definitions?',
+    options: [
+      { id: 'A', text: 'AWS Athena' },
+      { id: 'B', text: 'AWS Glue Crawler' },
+      { id: 'C', text: 'Amazon Redshift Spectrum' },
+      { id: 'D', text: 'AWS Lambda' }
+    ],
+    answer: ['B'],
+    explanation: 'AWS Glue Crawlers connect to source data streams, identify file schemas, and write database table definitions to the Glue Data Catalog.'
+  },
+  {
+    id: 2,
+    type: 'multi',
+    question: 'Which services are serverless and scale automatically to process or ingest real-time streaming data? (Select all that apply)',
+    options: [
+      { id: 'A', text: 'Amazon EMR' },
+      { id: 'B', text: 'Amazon Kinesis Data Streams' },
+      { id: 'C', text: 'AWS Lambda' },
+      { id: 'D', text: 'Amazon EC2' }
+    ],
+    answer: ['B', 'C'],
+    explanation: 'Kinesis Data Streams and AWS Lambda are serverless services that automatically scale to ingest and process massive streaming data.'
+  },
+  {
+    id: 3,
+    type: 'single',
+    question: 'You want to run SQL queries directly against raw files stored in S3 without loading them into database tables. Which feature fits best?',
+    options: [
+      { id: 'A', text: 'Redshift Spectrum' },
+      { id: 'B', text: 'Redshift ML' },
+      { id: 'C', text: 'Redshift Concurrency Scaling' },
+      { id: 'D', text: 'AWS Glue Elastic Views' }
+    ],
+    answer: ['A'],
+    explanation: 'Redshift Spectrum allows executing SQL queries directly on raw files (Parquet, CSV, JSON) in S3 using external schema catalogs.'
+  },
+  {
+    id: 4,
+    type: 'multi',
+    question: 'Ritik needs to secure raw S3 buckets containing sensitive financial data. Which methods provide encryption at rest? (Select all that apply)',
+    options: [
+      { id: 'A', text: 'SSE-S3 (S3-Managed Keys)' },
+      { id: 'B', text: 'SSE-KMS (AWS KMS Keys)' },
+      { id: 'C', text: 'SSL/TLS Certificates' },
+      { id: 'D', text: 'HTTPS Protocol' }
+    ],
+    answer: ['A', 'B'],
+    explanation: 'SSE-S3 and SSE-KMS provide server-side encryption at rest. SSL/TLS and HTTPS secure data in motion (in transit).'
+  },
+  {
+    id: 5,
+    type: 'single',
+    question: 'Which AWS service provides a managed Hadoop and Apache Spark ecosystem for distributed big data compute processing?',
+    options: [
+      { id: 'A', text: 'AWS Batch' },
+      { id: 'B', text: 'Amazon RDS' },
+      { id: 'C', text: 'Amazon EMR' },
+      { id: 'D', text: 'AWS Fargate' }
+    ],
+    answer: ['C'],
+    explanation: 'Amazon EMR (Elastic MapReduce) is the primary AWS platform for running managed Hadoop, Spark, Hive, and Presto distributed workloads.'
+  }
+];
 
-  let cost = 0;
-  let perf = 0;
+let currentQuestionIndex = 0;
+const selectedAnswers = new Set();
 
-  if (chkRedshift.checked) { cost += 180; perf += 50; }
-  if (chkGlue.checked) { cost += 70; perf += 20; }
-  if (chkLambda.checked) { cost += 30; perf += 15; }
-  if (chkRds.checked) { cost += 20; perf += 15; }
+function loadAwsQuestion() {
+  const qText = document.getElementById('aws-question-text');
+  const optsContainer = document.getElementById('aws-options-container');
+  const badge = document.getElementById('aws-game-badge');
+  const logEl = document.getElementById('quiz-status-log');
+  const btnSubmit = document.getElementById('btn-submit-quiz');
 
-  perfEl.textContent = perf + '%';
-  costEl.textContent = '$' + cost;
+  if (!qText || !optsContainer || !badge || !logEl || !btnSubmit) return;
 
-  // Real-time evaluation status feedback
+  const currentQ = awsQuestions[currentQuestionIndex];
+  badge.textContent = `QUESTION ${currentQ.id}/${awsQuestions.length}`;
+  qText.innerHTML = `${currentQ.type === 'multi' ? '<span class="c-tag info" style="font-size: 8px; padding: 2px 4px; border-radius: 4px; background: rgba(58,166,255,0.1); margin-right: 6px;">[SELECT ALL]</span> ' : ''}${currentQ.question}`;
+  optsContainer.innerHTML = '';
+  logEl.textContent = 'Select option(s) above and click Submit.';
   logEl.style.color = '#8b949e';
-  if (cost > 300) {
-    logEl.textContent = '🔥 ERROR: Budget exceeded! Keep cost under $300.';
-    logEl.style.color = '#ef4444';
-    perfEl.style.color = '#ef4444';
-    costEl.style.color = '#ef4444';
+  btnSubmit.textContent = 'Submit Answer';
+
+  currentQ.options.forEach(opt => {
+    const optDiv = document.createElement('div');
+    optDiv.className = 'quiz-opt-item';
+    optDiv.onclick = () => selectOption(opt.id, currentQ.type);
+    optDiv.setAttribute('data-id', opt.id);
+    optDiv.innerHTML = `
+      <span class="opt-bullet">${opt.id}</span>
+      <span class="opt-text">${opt.text}</span>
+    `;
+    optsContainer.appendChild(optDiv);
+  });
+}
+
+function selectOption(optId, type) {
+  const optsContainer = document.getElementById('aws-options-container');
+  if (!optsContainer) return;
+  const optItems = optsContainer.querySelectorAll('.quiz-opt-item');
+
+  if (type === 'single') {
+    selectedAnswers.clear();
+    selectedAnswers.add(optId);
+    optItems.forEach(item => {
+      if (item.getAttribute('data-id') === optId) {
+        item.classList.add('selected');
+      } else {
+        item.classList.remove('selected');
+      }
+    });
   } else {
-    perfEl.style.color = 'var(--text-primary)';
-    costEl.style.color = 'var(--text-primary)';
-    if (cost === 0) {
-      logEl.textContent = 'Ready to evaluate cloud layout...';
-    } else if (!chkRds.checked) {
-      logEl.textContent = '⚠ WARNING: Database (RDS) offline. Performance degraded.';
-      logEl.style.color = '#f59e0b';
-    } else if (!chkGlue.checked && !chkLambda.checked) {
-      logEl.textContent = '⚠ WARNING: No ETL ingestion running (Glue/Lambda).';
-      logEl.style.color = '#f59e0b';
+    if (selectedAnswers.has(optId)) {
+      selectedAnswers.delete(optId);
+      optItems.forEach(item => {
+        if (item.getAttribute('data-id') === optId) {
+          item.classList.remove('selected');
+        }
+      });
     } else {
-      logEl.textContent = '✅ Architecture complies with budget limits.';
-      logEl.style.color = '#10b981';
+      selectedAnswers.add(optId);
+      optItems.forEach(item => {
+        if (item.getAttribute('data-id') === optId) {
+          item.classList.add('selected');
+        }
+      });
     }
   }
 }
 
-function deployOptimizerStack() {
-  const chkRedshift = document.getElementById('opt-chk-redshift');
-  const chkGlue = document.getElementById('opt-chk-glue');
-  const chkLambda = document.getElementById('opt-chk-lambda');
-  const chkRds = document.getElementById('opt-chk-rds');
-  const logEl = document.getElementById('optimizer-status-log');
+function submitAwsAnswer() {
+  const currentQ = awsQuestions[currentQuestionIndex];
+  const logEl = document.getElementById('quiz-status-log');
+  const btnSubmit = document.getElementById('btn-submit-quiz');
 
-  if (!chkRedshift || !chkGlue || !chkLambda || !chkRds) return;
+  if (!logEl || !btnSubmit) return;
 
-  let cost = 0;
-  let perf = 0;
+  if (btnSubmit.textContent === 'Next Question') {
+    currentQuestionIndex = (currentQuestionIndex + 1) % awsQuestions.length;
+    selectedAnswers.clear();
+    loadAwsQuestion();
+    return;
+  }
 
-  if (chkRedshift.checked) { cost += 180; perf += 50; }
-  if (chkGlue.checked) { cost += 70; perf += 20; }
-  if (chkLambda.checked) { cost += 30; perf += 15; }
-  if (chkRds.checked) { cost += 20; perf += 15; }
+  if (selectedAnswers.size === 0) {
+    logEl.textContent = '⚠ Please select an answer first!';
+    logEl.style.color = '#f59e0b';
+    return;
+  }
 
-  if (cost > 300) {
-    logEl.textContent = '❌ DEPLOY FAILED: Budget overflow ($' + cost + ' > $300). Reduce costs!';
-    logEl.style.color = '#ef4444';
-  } else if (cost === 0) {
-    logEl.textContent = '❌ DEPLOY FAILED: Select resources before deploying.';
-    logEl.style.color = '#ef4444';
-  } else if (!chkRds.checked) {
-    logEl.textContent = '❌ DEPLOY FAILED: Critical database node missing.';
-    logEl.style.color = '#ef4444';
-  } else if (perf < 90) {
-    logEl.textContent = '❌ DEPLOY FAILED: Performance too low (' + perf + '% < 90%). Optimize layout.';
-    logEl.style.color = '#ef4444';
-  } else {
-    logEl.textContent = '🎉 SUCCESS: Stack Live! Cost: $' + cost + '/mo | Perf: ' + perf + '%! Recruiters gain +500 XP!';
+  const userAnswers = Array.from(selectedAnswers).sort();
+  const correctAnswers = [...currentQ.answer].sort();
+
+  const isCorrect = userAnswers.length === correctAnswers.length &&
+                    userAnswers.every((val, index) => val === correctAnswers[index]);
+
+  if (isCorrect) {
+    logEl.innerHTML = `🎉 <strong>CORRECT!</strong> ${currentQ.explanation}`;
     logEl.style.color = '#10b981';
+    btnSubmit.textContent = 'Next Question';
+  } else {
+    logEl.innerHTML = `❌ <strong>INCORRECT.</strong> Try again! Hint: Look at ${correctAnswers.join(', ')}.`;
+    logEl.style.color = '#ef4444';
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadAwsQuestion();
+});

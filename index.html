@@ -31,7 +31,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="style.css?v=1.2.7">
+  <link rel="stylesheet" href="style.css?v=1.2.8">
 
   <!-- Critical Theme Script: Avoids layout visual flash -->
   <script>
@@ -341,60 +341,34 @@
               Relentless about clean code execution, performance constraints, and startup speed. Shipped 7 fully-featured production projects in a 5-month self-study journey covering data fundamentals from spreadsheet calculations to cloud services mapping.
             </p>
 
-            <!-- Cloud Cost Optimizer Game -->
-            <div class="pipeline-visual-card console-card optimizer-card">
-              <div class="console-header optimizer-header">
+            <!-- AWS Certification Trivia Game -->
+            <div class="pipeline-visual-card console-card aws-game-card">
+              <div class="console-header aws-game-header">
                 <div class="console-dot-group">
                   <span class="console-dot red"></span>
                   <span class="console-dot yellow"></span>
                   <span class="console-dot green"></span>
                 </div>
-                <span class="console-title">☁️ Cloud Architect Optimizer</span>
-                <span class="console-status-badge">ACTIVE GAME</span>
+                <span class="console-title">☁️ AWS Cloud Quiz Challenge</span>
+                <span class="console-status-badge" id="aws-game-badge">QUESTION 1/5</span>
               </div>
-              <div class="optimizer-body">
-                <p class="optimizer-desc">Goal: Achieve 90%+ performance under $300/mo budget cap.</p>
+              <div class="aws-game-body">
+                <p class="aws-game-desc">Test your cloud data architecture expertise! Select the correct answer(s):</p>
                 
-                <div class="optimizer-stats">
-                  <div class="opt-stat">
-                    <span class="opt-stat-lbl">Performance</span>
-                    <span id="opt-perf" class="opt-stat-val">0%</span>
+                <div class="aws-quiz-container">
+                  <div id="aws-question-text" class="quiz-question">
+                    Loading AWS Question...
                   </div>
-                  <div class="opt-stat">
-                    <span class="opt-stat-lbl">Monthly Cost</span>
-                    <span id="opt-cost" class="opt-stat-val">$0</span>
-                  </div>
-                  <div class="opt-stat">
-                    <span class="opt-stat-lbl">Budget Cap</span>
-                    <span class="opt-stat-val">$300</span>
+                  
+                  <div id="aws-options-container" class="quiz-options">
+                    <!-- Options dynamically loaded by app.js -->
                   </div>
                 </div>
 
-                <div class="opt-switches">
-                  <label class="opt-switch-item">
-                    <input type="checkbox" id="opt-chk-redshift" onchange="updateOptimizer()">
-                    <span class="chk-custom"></span>
-                    <span class="switch-lbl">❄️ Redshift Warehouse (+$180, +50% Perf)</span>
-                  </label>
-                  <label class="opt-switch-item">
-                    <input type="checkbox" id="opt-chk-glue" onchange="updateOptimizer()">
-                    <span class="chk-custom"></span>
-                    <span class="switch-lbl">🔧 AWS Glue ETL (+$70, +20% Perf)</span>
-                  </label>
-                  <label class="opt-switch-item">
-                    <input type="checkbox" id="opt-chk-lambda" onchange="updateOptimizer()">
-                    <span class="chk-custom"></span>
-                    <span class="switch-lbl">⚡ AWS Lambda Functions (+$30, +15% Perf)</span>
-                  </label>
-                  <label class="opt-switch-item">
-                    <input type="checkbox" id="opt-chk-rds" onchange="updateOptimizer()">
-                    <span class="chk-custom"></span>
-                    <span class="switch-lbl">🗄️ PostgreSQL RDS (+$20, +15% Perf)</span>
-                  </label>
+                <div class="quiz-footer">
+                  <button class="btn btn-primary btn-sm btn-full" id="btn-submit-quiz" style="padding: 6px 12px; font-size: 10px; min-height: auto;" onclick="submitAwsAnswer()">Submit Answer</button>
+                  <div id="quiz-status-log" class="quiz-log">Select option(s) above and click Submit.</div>
                 </div>
-
-                <button class="btn btn-primary btn-sm btn-full" id="btn-deploy-stack" style="padding: 6px 12px; font-size: 10px; min-height: auto;" onclick="deployOptimizerStack()">Deploy Architecture</button>
-                <div id="optimizer-status-log" class="optimizer-log">Ready to evaluate cloud layout...</div>
               </div>
             </div>
 
@@ -1369,6 +1343,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=1.2.7"></script>
+  <script src="app.js?v=1.2.8"></script>
 </body>
 </html>

@@ -982,8 +982,8 @@ h1, h2, h3, h4, h5, h6 {
   animation: pulse-arrow 2s infinite ease-in-out;
 }
 
-/* Cloud Cost Optimizer Game Styles */
-.optimizer-body {
+/* AWS Quiz Game Styles */
+.aws-game-body {
   padding: 12px;
   background-color: var(--bg-card);
   border-bottom-left-radius: 12px;
@@ -993,94 +993,90 @@ h1, h2, h3, h4, h5, h6 {
   gap: 10px;
 }
 
-.optimizer-desc {
+.aws-game-desc {
   font-size: 11px;
   color: var(--text-secondary);
   line-height: 1.4;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
-.optimizer-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  margin-bottom: 4px;
-}
-
-.opt-stat {
+.quiz-question {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.45;
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 6px 8px;
-  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
-.opt-stat-lbl {
-  display: block;
-  font-size: 8px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.opt-stat-val {
-  display: block;
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--text-primary);
-  margin-top: 2px;
-  transition: color var(--transition-fast);
-}
-
-.opt-switches {
+.quiz-options {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
-.opt-switch-item {
+.quiz-opt-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 10.5px;
-  font-family: var(--font-body);
-  color: var(--text-primary);
-  cursor: pointer;
-  padding: 4px 6px;
+  gap: 10px;
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 6px;
-  transition: border-color var(--transition-fast);
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast) ease-in-out;
 }
 
-.opt-switch-item:hover {
+.quiz-opt-item:hover {
+  border-color: var(--accent-primary);
+  background-color: rgba(37, 99, 235, 0.02);
+}
+
+.quiz-opt-item.selected {
+  background-color: rgba(37, 99, 235, 0.08) !important;
+  border-color: var(--accent-primary) !important;
+}
+
+.opt-bullet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.quiz-opt-item.selected .opt-bullet {
+  background-color: var(--accent-primary);
+  color: #fff;
   border-color: var(--accent-primary);
 }
 
-.opt-switch-item input[type="checkbox"] {
-  width: 14px;
-  height: 14px;
-  margin: 0;
-  cursor: pointer;
-  accent-color: var(--accent-primary);
+.opt-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
-.switch-lbl {
-  font-weight: 500;
-}
-
-.optimizer-log {
+.quiz-log {
   background-color: #0d1117;
   border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 8px 10px;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 10px;
-  line-height: 1.4;
+  line-height: 1.45;
   margin-top: 8px;
-  min-height: 36px;
+  min-height: 38px;
   color: #8b949e;
   text-align: left;
 }
@@ -2844,6 +2840,36 @@ h1, h2, h3, h4, h5, h6 {
   .cs-footer {
     flex-direction: column !important;
     gap: 10px !important;
+  }
+
+  /* Safety bounds override to prevent horizontal scrolling / side screen clipping */
+  .about-asymmetric-wrapper, .about-left-col, .about-right-col, .pipeline-visual-card, .data-lab-card, .aws-game-card {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .quiz-opt-item {
+    padding: 6px 10px !important;
+    gap: 8px !important;
+  }
+  
+  .opt-text {
+    font-size: 10px !important;
+  }
+  
+  .quiz-question {
+    font-size: 11px !important;
+    padding: 8px !important;
+  }
+
+  /* Clicker Game button stacking to prevent card stretching */
+  .clicker-actions {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  
+  .clicker-actions button {
+    width: 100% !important;
   }
 }
 
