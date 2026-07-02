@@ -2,213 +2,260 @@
 
 # 👋 Hi, I'm Ritik Yadav
 
-### AI Engineer • Full Stack Developer • Automation Builder • Problem Solver
+### 🚀 AI Engineer • Full Stack Developer • Automation Builder • Problem Solver
 
-Building AI-powered applications, intelligent automations, and scalable software that solve real-world business problems.
+<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=24&pause=1000&color=3B82F6&center=true&vCenter=true&width=700&lines=Building+AI+Products;Full+Stack+Developer;AI+Automation+Engineer;Flutter+Developer;Open+Source+Enthusiast;Always+Learning+New+Technologies" />
 
-<p>
-  <a href="https://github.com/yourusername"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github"></a>
-  <a href="https://linkedin.com/in/yourusername"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin"></a>
-  <a href="https://yourportfolio.com"><img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel"></a>
+---
+
+### Building intelligent software that solves real-world business problems using AI, automation, and modern web technologies.
+
+<p align="center">
+
+<a href="https://ritikyadav18.vercel.app">
+<img src="https://img.shields.io/badge/Portfolio-Visit-000000?style=for-the-badge&logo=vercel">
+</a>
+
+<a href="mailto:yadavritik2027@gmail.com">
+<img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white">
+</a>
+
+<a href="https://github.com/ritikyadav-io">
+<img src="https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github">
+</a>
+
+<a href="https://www.linkedin.com/in/ritikyadav18">
+<img src="https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin">
+</a>
+
 </p>
 
 </div>
 
 ---
 
-# 🚀 About Me
+# 💡 About Me
 
-I'm a B.Tech student specializing in Artificial Intelligence & Data Science with a passion for building products that combine AI, automation, and modern web technologies.
+I'm **Ritik Yadav**, a B.Tech student specializing in **Artificial Intelligence & Data Science**, passionate about building products that combine **Artificial Intelligence, Full Stack Development, Automation, and Cloud Technologies**.
 
-I enjoy creating software that solves real business problems instead of just demonstrating technology.
+I believe software should solve **real business problems**, not just showcase technical skills.
 
-My interests include:
+I enjoy designing products from idea to deployment while focusing on scalability, clean architecture, and user experience.
 
-- 🤖 Artificial Intelligence
-- ⚡ Workflow Automation
+---
+
+# 🚀 Current Focus
+
+- 🤖 AI Engineering
+- 🧠 Large Language Models (LLMs)
+- ⚡ AI Workflow Automation
 - 🌐 Full Stack Development
+- 📱 Flutter Development
+- 🔍 SEO & Website Intelligence
+- ☁️ Cloud APIs & Integrations
 - 📊 Data Engineering
-- 🔍 Search Engine Optimization
-- ☁️ Cloud & APIs
-- 🚀 SaaS Product Development
-
----
-
-# 💼 What I Build
-
-### 🤖 AI Applications
-
-- AI Assistants
-- AI Agents
-- RAG Systems
-- AI Productivity Tools
-- LLM Integrations
-
----
-
-### 🌐 Full Stack Applications
-
-- SaaS Platforms
-- Dashboards
-- Admin Panels
-- Business Applications
-- REST APIs
-
----
-
-### ⚡ Automation
-
-- n8n Workflows
-- Business Process Automation
-- API Integrations
-- CRM Automation
-- Email Automation
-
----
-
-### 📈 Digital Solutions
-
-- SEO Tools
-- Website Audit Systems
-- Lead Generation Tools
-- Analytics Dashboards
 
 ---
 
 # 🛠 Tech Stack
 
-### Languages
+## Languages
 
-- Python
-- JavaScript
-- TypeScript
-- Dart
-- SQL
+![Python](https://skillicons.dev/icons?i=python)
+![JavaScript](https://skillicons.dev/icons?i=javascript)
+![TypeScript](https://skillicons.dev/icons?i=typescript)
+![Dart](https://skillicons.dev/icons?i=dart)
+![SQL](https://skillicons.dev/icons?i=mysql)
 
-### Frontend
+---
 
-- React
-- Next.js
-- Flutter
-- Tailwind CSS
-- HTML5
-- CSS3
+## Frontend
 
-### Backend
+![React](https://skillicons.dev/icons?i=react)
+![NextJS](https://skillicons.dev/icons?i=nextjs)
+![Flutter](https://skillicons.dev/icons?i=flutter)
+![Tailwind](https://skillicons.dev/icons?i=tailwind)
+![HTML](https://skillicons.dev/icons?i=html)
+![CSS](https://skillicons.dev/icons?i=css)
 
-- Node.js
-- Express
-- FastAPI
-- Supabase
-- PostgreSQL
+---
 
-### AI
+## Backend
 
-- OpenAI
-- LangChain
-- Vector Databases
+![NodeJS](https://skillicons.dev/icons?i=nodejs)
+![Express](https://skillicons.dev/icons?i=express)
+![Supabase](https://skillicons.dev/icons?i=supabase)
+![Firebase](https://skillicons.dev/icons?i=firebase)
+![Postgres](https://skillicons.dev/icons?i=postgres)
+
+---
+
+## AI & Automation
+
+- OpenAI API
 - Prompt Engineering
-- Embeddings
-
-### Automation
-
-- n8n
-- Zapier
-- Make
-
-### Cloud & Tools
-
-- Git
-- GitHub
-- Docker
-- Firebase
-- Vercel
-- Netlify
-
----
-
-# 📌 Featured Projects
-
-## 🤖 AI Website Growth Platform
-
-An AI-powered platform that analyzes websites and generates SEO, performance, accessibility, and business growth recommendations.
-
-**Tech:** React • OpenAI • Firecrawl • PageSpeed API
-
----
-
-## ⚡ AI Workflow Automation
-
-A collection of intelligent business automations using n8n and AI APIs.
-
-**Tech:** n8n • OpenAI • REST APIs
-
----
-
-## 📊 AI Dashboard
-
-Modern analytics dashboard with AI-generated insights and visual reports.
-
----
-
-## 🌐 Full Stack SaaS
-
-Production-ready web application with authentication, dashboard, APIs, and database.
-
----
-
-# 📈 GitHub Stats
-
-(Add GitHub Readme Stats here)
-
----
-
-# 🎯 Currently Learning
-
 - AI Agents
-- Multi-Agent Systems
-- RAG
-- LangGraph
-- MCP
-- Advanced n8n
-- Cloud Architecture
-- System Design
+- n8n Automation
+- Workflow Automation
+- REST APIs
+- API Integrations
 
 ---
 
-# 🎯 Goals
+## Tools
 
-- Build production-ready AI products
-- Contribute to open source
-- Work on scalable systems
-- Learn advanced AI engineering
-- Launch my own SaaS products
+![Git](https://skillicons.dev/icons?i=git)
+![GitHub](https://skillicons.dev/icons?i=github)
+![Docker](https://skillicons.dev/icons?i=docker)
+![VSCode](https://skillicons.dev/icons?i=vscode)
+![Vercel](https://skillicons.dev/icons?i=vercel)
+
+---
+
+# 💼 Featured Projects
+
+## 🤖 AuditFlow AI
+
+An AI-powered Website Growth Intelligence Platform that performs:
+
+- SEO Audit
+- Website Intelligence
+- Performance Analysis
+- Accessibility Review
+- AI Recommendations
+- Business Growth Insights
+- PDF Reporting
+
+**Tech**
+
+React • OpenAI • Firecrawl • Google PageSpeed API
+
+---
+
+## ⚡ AI Marketing Automation
+
+A smart automation platform for businesses.
+
+Features
+
+- Website Audits
+- AI Content
+- SEO Reports
+- Lead Generation
+- AI Outreach
+- Workflow Automation
+
+---
+
+## 🎯 AI Career Copilot
+
+An intelligent platform that helps students
+
+- Track Applications
+- Analyze Resume
+- Generate Cover Letters
+- Prepare Interviews
+- Daily Internship Alerts
+
+---
+
+## 📱 Flutter Applications
+
+Modern Flutter apps with clean architecture, responsive UI, and scalable code.
+
+---
+
+# 🎯 Areas of Interest
+
+- Artificial Intelligence
+- Software Engineering
+- AI Agents
+- SaaS Development
+- Automation
+- Machine Learning
+- Backend Engineering
+- Full Stack Development
+- Product Design
+- Startup Building
+
+---
+
+# 📈 GitHub Analytics
+
+<p align="center">
+
+<img height="170" src="https://github-readme-stats.vercel.app/api?username=ritikyadav-io&show_icons=true&theme=tokyonight&hide_border=true"/>
+
+<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=ritikyadav-io&layout=compact&theme=tokyonight&hide_border=true"/>
+
+</p>
+
+---
+
+# 🔥 GitHub Streak
+
+<p align="center">
+
+<img src="https://streak-stats.demolab.com?user=ritikyadav-io&theme=tokyonight&hide_border=true"/>
+
+</p>
+
+---
+
+# 📊 Contribution Graph
+
+<p align="center">
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=ritikyadav-io&theme=tokyo-night"/>
+
+</p>
+
+---
+
+# 🎯 2026 Goals
+
+- 🚀 Build Production-Ready AI SaaS Products
+- 🤖 Master AI Agents & LLM Applications
+- 🌐 Launch Multiple Full Stack Projects
+- 📱 Publish Flutter Apps
+- ⚡ Become an AI Automation Engineer
+- 💼 Secure an AI/Software Engineering Internship
+- 🌍 Contribute to Open Source
 
 ---
 
 # 🤝 Let's Connect
 
-I'm always interested in discussing:
+### 📧 Email
 
-- AI Engineering
-- Full Stack Development
-- Automation
-- SaaS Products
-- Startups
-- Open Source
+**yadavritik2027@gmail.com**
 
-📧 Email: your@email.com
+### 💼 LinkedIn
 
-💼 LinkedIn: https://linkedin.com/in/yourusername
+**https://www.linkedin.com/in/ritikyadav18**
 
-🌐 Portfolio: https://yourportfolio.com
+### 💻 GitHub
+
+**https://github.com/ritikyadav-io**
+
+### 🌐 Portfolio
+
+**https://ritikyadav18.vercel.app**
+
+---
+
+# 💭 Philosophy
+
+> **"Great software doesn't just work—it solves meaningful problems, scales with users, and creates real impact."**
 
 ---
 
 <div align="center">
 
-### "Build products that solve problems, not just projects that demonstrate technology."
+### ⭐ Thanks for visiting my profile!
 
-⭐ Thanks for visiting my profile!
+If you like my work, consider following me and exploring my repositories.
+
+🚀 Always building. Always learning.
 
 </div>
