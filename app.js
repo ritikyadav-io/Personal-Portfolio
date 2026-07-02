@@ -698,53 +698,16 @@ function updateClickerUI() {
   }
 }
 
-// Recruiter Cheat Codes Interaction
-function triggerCheatCode(code) {
-  const consoleBody = document.getElementById('recruiter-console-body');
-  if (!consoleBody) return;
-
-  // Clear previous log lines
-  consoleBody.innerHTML = '';
-
-  const now = new Date();
-  const timeStr = `[${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}]`;
-
-  let logs = [];
-
-  if (code === 'bypass') {
-    logs = [
-      `<span class="c-time">${timeStr}</span> <span class="c-tag info">[PROCESS]</span> Bypassing HR keyword screening...`,
-      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[SCANNER]</span> Resume score: 99.9% (Over-indexed on SQL &amp; AWS)`,
-      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[SUCCESS]</span> Bypassed! Direct final technical round with CTO scheduled.`
-    ];
-  } else if (code === 'salary') {
-    logs = [
-      `<span class="c-time">${timeStr}</span> <span class="c-tag info">[FINANCE]</span> Evaluating compensation parameter limits...`,
-      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[UPGRADE]</span> Base salary increased +20% + stock options.`,
-      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[SUCCESS]</span> Ritik's motivation increased by 200%. Contract ready.`
-    ];
-  } else if (code === 'culture') {
-    logs = [
-      `<span class="c-time">${timeStr}</span> <span class="c-tag info">[QUERY]</span> Querying ritik_personality_attributes...`,
-      `<span class="c-time">${timeStr}</span> <span class="c-tag warning">[STATS]</span> Coffee intake: 4.2 L/day | Meme sharing capacity: High`,
-      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[SUCCESS]</span> 100% culture fit. Ready for standups and pizza parties.`
-    ];
-  } else if (code === 'hire') {
-    logs = [
-      `<span class="c-time">${timeStr}</span> <span class="c-tag info">[ONBOARD]</span> Initializing onboarding automated sequence...`,
-      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[PIPELINE]</span> Created profile: @ritikyadav | Slack workspace ready.`,
-      `<span class="c-time">${timeStr}</span> <span class="c-tag success">[FIREWORKS]</span> Offer letter sent to yadavritik2027@gmail.com!`
-    ];
+// Live Data Ingestion Telemetry Simulator
+document.addEventListener('DOMContentLoaded', () => {
+  const teleVolumeEl = document.getElementById('tele-volume');
+  if (teleVolumeEl) {
+    let volume = 248.62;
+    setInterval(() => {
+      // Random increment between 0.01 and 0.05 GB (10 to 50 MB)
+      const increment = Math.random() * 0.04 + 0.01;
+      volume += increment;
+      teleVolumeEl.textContent = volume.toFixed(2) + ' GB';
+    }, 2500);
   }
-
-  // Print logs sequentially for terminal typing effect
-  logs.forEach((logLine, index) => {
-    setTimeout(() => {
-      const line = document.createElement('div');
-      line.className = 'console-line';
-      line.innerHTML = logLine;
-      consoleBody.appendChild(line);
-      consoleBody.scrollTop = consoleBody.scrollHeight;
-    }, index * 400);
-  });
-}
+});

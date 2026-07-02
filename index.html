@@ -31,7 +31,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="style.css?v=1.2.4">
+  <link rel="stylesheet" href="style.css?v=1.2.5">
 
   <!-- Critical Theme Script: Avoids layout visual flash -->
   <script>
@@ -341,27 +341,50 @@
               Relentless about clean code execution, performance constraints, and startup speed. Shipped 7 fully-featured production projects in a 5-month self-study journey covering data fundamentals from spreadsheet calculations to cloud services mapping.
             </p>
 
-            <!-- Recruiter Fast-Track Portal -->
-            <div class="pipeline-visual-card console-card recruiter-card">
-              <div class="console-header">
+            <!-- AWS Ingestion Telemetry Widget -->
+            <div class="pipeline-visual-card console-card telemetry-card">
+              <div class="console-header telemetry-header">
                 <div class="console-dot-group">
                   <span class="console-dot red"></span>
                   <span class="console-dot yellow"></span>
                   <span class="console-dot green"></span>
                 </div>
-                <span class="console-title">⚡ Recruiter Fast-Track Portal</span>
-                <span class="console-status-badge">SANDBOX</span>
+                <span class="console-title">📊 AWS Ingestion Telemetry</span>
+                <span class="console-status-badge">LIVE MONITOR</span>
               </div>
-              <div class="recruiter-body">
-                <p class="recruiter-desc">Bypass standard screening or speed up your hiring process using these cheat codes:</p>
-                <div class="recruiter-btn-grid">
-                  <button class="recruiter-btn" onclick="triggerCheatCode('bypass')">⚡ Bypass HR</button>
-                  <button class="recruiter-btn" onclick="triggerCheatCode('salary')">💰 Boost Offer</button>
-                  <button class="recruiter-btn" onclick="triggerCheatCode('culture')">☕ Culture Fit</button>
-                  <button class="recruiter-btn" onclick="triggerCheatCode('hire')">🎉 Sign Ritik</button>
+              <div class="telemetry-body">
+                <div class="telemetry-grid">
+                  <div class="telemetry-stat">
+                    <span class="tele-lbl">Volume Ingested</span>
+                    <span class="tele-val" id="tele-volume">248.62 GB</span>
+                  </div>
+                  <div class="telemetry-stat">
+                    <span class="tele-lbl">Success Rate</span>
+                    <span class="tele-val text-success">99.98%</span>
+                  </div>
+                  <div class="telemetry-stat">
+                    <span class="tele-lbl">Active Jobs</span>
+                    <span class="tele-val text-primary">5 Running</span>
+                  </div>
                 </div>
-                <div class="console-body" id="recruiter-console-body" style="height: 100px;">
-                  <div class="console-line"><span class="c-time">[SYSTEM]</span> <span class="c-tag info">[INFO]</span> Ready for recruiter inputs. Click a cheat code above...<span class="console-cursor">_</span></div>
+                
+                <div class="telemetry-list">
+                  <div class="telemetry-item">
+                    <span class="item-name">🔌 Webhook &amp; REST APIs</span>
+                    <span class="item-status healthy">🟢 Active</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="item-name">📦 S3 Raw Bucket Storage</span>
+                    <span class="item-status healthy">🟢 Listening</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="item-name">⚡ PySpark Lambda ETL</span>
+                    <span class="item-status healthy">🟢 Processing</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="item-name">🗄️ Supabase PostgreSQL</span>
+                    <span class="item-status healthy">🟢 Healthy</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1337,6 +1360,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=1.2.4"></script>
+  <script src="app.js?v=1.2.5"></script>
 </body>
 </html>
