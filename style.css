@@ -2705,8 +2705,110 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Forms & Input Sizing */
   .form-group input, .form-group textarea {
+    padding: 10px 12px !important;
+    font-size: 13px !important;
+    border-radius: 6px !important;
+  }
+
+  /* About Me Section Mobile Adjustments */
+  .about-main-title {
+    font-size: 21px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 12px !important;
+  }
+  .about-timeline {
+    padding-left: 14px !important;
+    gap: 14px !important;
+  }
+  .about-timeline-node h4 {
+    font-size: 13px !important;
+    margin-bottom: 2px !important;
+  }
+  .about-timeline-node p {
+    font-size: 12px !important;
+  }
+  .about-detail-block h3 {
+    font-size: 13px !important;
+    margin-bottom: 12px !important;
+  }
+  .career-goals-box, .about-edu-card {
+    padding: 12px !important;
+    border-radius: 8px !important;
+    gap: 8px !important;
+  }
+  .goal-item {
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+  }
+  .edu-card-header h4 {
+    font-size: 13px !important;
+  }
+  .about-edu-card p {
+    font-size: 12px !important;
+  }
+
+  /* Technical Capabilities (Skills) Mobile Adjustments */
+  .skills-card {
     padding: 14px !important;
-    font-size: 16px !important;
+    border-radius: 8px !important;
+  }
+  .skills-card h3 {
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+  }
+  .skills-card p {
+    font-size: 12px !important;
+    margin-bottom: 12px !important;
+    line-height: 1.4 !important;
+  }
+  .skills-detail-block {
+    padding: 6px 0 !important;
+    gap: 8px !important;
+    font-size: 11px !important;
+  }
+  .skill-exp-badge {
+    font-size: 8px !important;
+    padding: 2px 4px !important;
+  }
+
+  /* Professional Experience Mobile Adjustments */
+  .timeline {
+    padding-left: 20px !important;
+  }
+  .timeline-content {
+    padding: 14px !important;
+    border-radius: 8px !important;
+  }
+  .timeline-header {
+    margin-bottom: 10px !important;
+    padding-bottom: 8px !important;
+  }
+  .role-title {
+    font-size: 14px !important;
+  }
+  .company-name {
+    font-size: 11px !important;
+  }
+  .timeline-date {
+    font-size: 10px !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+  }
+  .experience-bullets {
+    margin: 8px 0 10px 0 !important;
+    gap: 4px !important;
+    padding-left: 14px !important;
+  }
+  .experience-bullets li {
+    font-size: 11.5px !important;
+    line-height: 1.4 !important;
+  }
+  .experience-tags {
+    gap: 4px !important;
+  }
+  .experience-tags .tag {
+    font-size: 8.5px !important;
+    padding: 1px 4px !important;
   }
 
   /* Modal Details */
