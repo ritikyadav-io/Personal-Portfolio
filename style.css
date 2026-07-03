@@ -322,6 +322,15 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.03em;
   color: var(--text-primary);
 }
+.logo-title {
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  margin: 0;
+  display: inline;
+}
 .logo-desktop { display: block; }
 .logo-mobile { display: none; }
 
