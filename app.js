@@ -571,10 +571,14 @@ function switchLabTab(tab) {
   // highlight correct button
   document.querySelectorAll('.lab-tab-btn').forEach(btn => {
     if ((tab === 'sql' && btn.textContent.includes('SQL')) ||
-        (tab === 'pipeline' && btn.textContent.includes('Pipeline'))) {
+        (tab === 'pipeline' && (btn.textContent.includes('Pipeline') || btn.textContent.includes('Outlier')))) {
       btn.classList.add('active');
     }
   });
+
+  if (tab === 'pipeline') {
+    generateOutlierRound();
+  }
 }
 
 // SQL Sandbox Simulator
@@ -645,57 +649,157 @@ function resetSqlSimulator() {
   output.textContent = "-- Click 'Run Query' to execute SQL logs...";
 }
 
-// Pipeline Clicker Game State
-let clickerState = { records: 0, cpu: 10, workers: 2, budget: 500 };
+// Outlier Hunter Game State
+let outlierState = { score: 100, checked: 0, outlierIndex: 0, active: false };
 
-function triggerEtlRecord() {
-  const load = Math.floor(Math.random() * 15) + 10;
-  clickerState.records += 50;
-  clickerState.cpu = Math.min(100, clickerState.cpu + load - (clickerState.workers * 2));
-  clickerState.budget += 20;
-
-  updateClickerUI();
-
-  const log = document.getElementById('clicker-status-log');
-  if (clickerState.cpu >= 90) {
-    log.textContent = '🔥 CRITICAL: Server overloaded! Add more Glue nodes!';
-    log.style.color = '#f85149';
-  } else if (clickerState.cpu >= 60) {
-    log.textContent = '⚠ WARNING: CPU rising. Consider scaling Glue cluster.';
-    log.style.color = '#f0ad4e';
-  } else {
-    log.textContent = `✅ PySpark job completed. +50K rows ingested into S3.`;
-    log.style.color = '#7ee787';
+const outlierScenarios = [
+  {
+    category: 'E-commerce Revenue',
+    normal: () => `Revenue: $${(Math.random() * 80 + 30).toFixed(2)}`,
+    outlier: () => `Revenue: -$${(Math.random() * 4000 + 1000).toFixed(2)}`,
+    explanation: '🎉 Success: Dropped negative revenue row! CFO sends a high-five.',
+    anomalyDesc: 'Negative transaction'
+  },
+  {
+    category: 'User Demographics',
+    normal: () => `User Age: ${Math.floor(Math.random() * 40) + 18}`,
+    outlier: () => `User Age: ${Math.floor(Math.random() * 500) + 800}`,
+    explanation: '🎉 Success: Filtered Dracula! Vampire cohorts excluded.',
+    anomalyDesc: 'Century-old user age'
+  },
+  {
+    category: 'Web Traffic Partitions',
+    normal: () => `Hits: ${Math.floor(Math.random() * 1000) + 800}`,
+    outlier: () => `Hits: ${Math.floor(Math.random() * 5000000) + 9000000}`,
+    explanation: '🎉 Success: Blocked botnet DDoS spike! CPU load cooled down.',
+    anomalyDesc: 'Million hits spike'
+  },
+  {
+    category: 'App Store Ratings',
+    normal: () => `Rating: ${'⭐'.repeat(Math.floor(Math.random() * 3) + 3)}`,
+    outlier: () => `Rating: ⭐⭐⭐⭐⭐⭐`,
+    explanation: '🎉 Success: Deleted illegal 6-star rating. Physics restored.',
+    anomalyDesc: '6-star rating'
+  },
+  {
+    category: 'SaaS Cluster Temp',
+    normal: () => `Temp: ${Math.floor(Math.random() * 20) + 40}°C`,
+    outlier: () => `Temp: ${Math.floor(Math.random() * 10000) + 8000}°C`,
+    explanation: '🎉 Success: Meltdown averted! Calibrated sensor back to 42°C.',
+    anomalyDesc: 'Meltdown temp'
+  },
+  {
+    category: 'Compensation Audits',
+    normal: () => `Wage: $${(Math.random() * 30 + 50).toFixed(2)}/hr`,
+    outlier: () => `Wage: $0.01/hr`,
+    explanation: '🎉 Success: Flagged minimum wage breach! Unpaid interns saved.',
+    anomalyDesc: '0.01/hr wage'
+  },
+  {
+    category: 'Conversion Analytics',
+    normal: () => `Conv: ${(Math.random() * 4 + 1).toFixed(1)}%`,
+    outlier: () => `Conv: ${(Math.random() * 100 + 120).toFixed(1)}%`,
+    explanation: '🎉 Success: Filtered glitch! >100% conversion is impossible.',
+    anomalyDesc: 'Over 100% conversion'
+  },
+  {
+    category: 'Server Partitioning',
+    normal: () => `Disk Use: ${Math.floor(Math.random() * 40) + 30}%`,
+    outlier: () => `Disk Use: -99%`,
+    explanation: '🎉 Success: Solved count underflow error. Disk metrics synced.',
+    anomalyDesc: '-99% negative storage'
   }
+];
+
+let currentScenario = null;
+
+function generateOutlierRound() {
+  currentScenario = outlierScenarios[Math.floor(Math.random() * outlierScenarios.length)];
+  outlierState.outlierIndex = Math.floor(Math.random() * 4);
+  
+  for (let i = 0; i < 4; i++) {
+    const btn = document.getElementById(`outlier-opt-${i}`);
+    if (!btn) continue;
+    
+    // Reset background and style
+    btn.style.borderColor = 'var(--border-color)';
+    btn.style.backgroundColor = 'var(--bg-secondary)';
+    
+    if (i === outlierState.outlierIndex) {
+      btn.textContent = currentScenario.outlier();
+    } else {
+      btn.textContent = currentScenario.normal();
+    }
+  }
+  
+  outlierState.active = true;
 }
 
-function addGlueWorker() {
-  if (clickerState.budget < 100) {
-    document.getElementById('clicker-status-log').textContent = '⚠ Not enough budget! Process more rows first.';
-    document.getElementById('clicker-status-log').style.color = '#f0ad4e';
+function checkOutlierSelection(index) {
+  if (!outlierState.active) return;
+  outlierState.active = false;
+  
+  const log = document.getElementById('outlier-status-log');
+  const scoreEl = document.getElementById('outlier-score');
+  const checkedEl = document.getElementById('outlier-checked');
+  
+  if (!log || !scoreEl || !checkedEl) return;
+  
+  // Highlight options
+  for (let i = 0; i < 4; i++) {
+    const btn = document.getElementById(`outlier-opt-${i}`);
+    if (!btn) continue;
+    if (i === outlierState.outlierIndex) {
+      btn.style.borderColor = '#10b981';
+      btn.style.backgroundColor = 'rgba(16, 185, 129, 0.08)';
+    } else if (i === index) {
+      btn.style.borderColor = '#ef4444';
+      btn.style.backgroundColor = 'rgba(239, 68, 68, 0.08)';
+    }
+  }
+
+  if (index === outlierState.outlierIndex) {
+    // Correct selection
+    outlierState.checked += 1;
+    if (outlierState.score < 100) {
+      outlierState.score = Math.min(100, outlierState.score + 5);
+    }
+    log.innerHTML = `<span style="color: #10b981;">${currentScenario.explanation}</span>`;
+  } else {
+    // Incorrect selection
+    outlierState.score = Math.max(0, outlierState.score - 15);
+    log.innerHTML = `<span style="color: #ef4444;">❌ Deleted valid row! Cleaned: "${document.getElementById(`outlier-opt-${index}`).textContent}". [Outlier was: ${currentScenario.anomalyDesc}]</span>`;
+  }
+  
+  checkedEl.textContent = outlierState.checked;
+  scoreEl.textContent = outlierState.score + '%';
+  
+  // Adjust score color based on performance
+  if (outlierState.score >= 80) {
+    scoreEl.style.color = '#10b981';
+  } else if (outlierState.score >= 50) {
+    scoreEl.style.color = '#f59e0b';
+  } else {
+    scoreEl.style.color = '#ef4444';
+  }
+
+  // Handle pipeline breakdown reset if score drops too low
+  if (outlierState.score <= 30) {
+    log.innerHTML = `<span style="color: #ef4444; font-weight: 700;">🔥 CRITICAL: Poor Data Quality (${outlierState.score}%)! Re-calibrating schemas...</span>`;
+    setTimeout(() => {
+      outlierState.score = 100;
+      scoreEl.textContent = '100%';
+      scoreEl.style.color = 'var(--text-primary)';
+      log.textContent = 'Pipeline calibrated! Data feed restarted.';
+      generateOutlierRound();
+    }, 2200);
     return;
   }
-  clickerState.workers += 1;
-  clickerState.budget -= 100;
-  clickerState.cpu = Math.max(5, clickerState.cpu - 20);
-  updateClickerUI();
-  document.getElementById('clicker-status-log').textContent =
-    `✅ Glue worker added (${clickerState.workers} total). CPU cooled to ${clickerState.cpu}%.`;
-  document.getElementById('clicker-status-log').style.color = '#7ee787';
-}
-
-function updateClickerUI() {
-  document.getElementById('clicker-records').textContent = clickerState.records + 'k Rows';
-  document.getElementById('clicker-cpu').textContent = clickerState.cpu + '%';
-  document.getElementById('clicker-workers').textContent = clickerState.workers;
-
-  const bar = document.getElementById('clicker-cpu-bar');
-  bar.style.width = clickerState.cpu + '%';
-  if (clickerState.cpu >= 80) {
-    bar.classList.add('danger');
-  } else {
-    bar.classList.remove('danger');
-  }
+  
+  // Automatically queue next round
+  setTimeout(() => {
+    generateOutlierRound();
+  }, 1600);
 }
 
 // BI & A/B Testing Simulator Game Logic
@@ -876,4 +980,5 @@ function runBiSimulation() {
 
 document.addEventListener('DOMContentLoaded', () => {
   selectBiScenario('funnel');
+  generateOutlierRound();
 });

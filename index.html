@@ -33,7 +33,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="style.css?v=1.3.1">
+  <link rel="stylesheet" href="style.css?v=1.3.2">
 
   <!-- Critical Theme Script: Avoids layout visual flash -->
   <script>
@@ -412,7 +412,7 @@
                 <h4>🎮 Interactive Data Lab</h4>
                 <div class="lab-tabs">
                   <button class="lab-tab-btn active" onclick="switchLabTab('sql')">SQL Sandbox</button>
-                  <button class="lab-tab-btn" onclick="switchLabTab('pipeline')">Pipeline Clicker</button>
+                  <button class="lab-tab-btn" onclick="switchLabTab('pipeline')">Outlier Hunter</button>
                 </div>
               </div>
               
@@ -431,34 +431,30 @@
                 </div>
               </div>
 
-              <!-- Tab 2: Pipeline Clicker Game -->
+              <!-- Tab 2: Outlier Hunter Game -->
               <div id="lab-tab-pipeline" class="lab-tab-content">
-                <p class="lab-desc">Keep PySpark server load balanced! Click trigger to process S3 bucket partitions.</p>
-                <div class="pipeline-clicker-wrapper">
-                  <div class="clicker-stats">
-                    <div class="stat-box">
-                      <span class="stat-lbl">Processed</span>
-                      <span id="clicker-records" class="stat-val">0k Rows</span>
+                <p class="lab-desc">Challenge: Clean the dataset! Spot and tap the anomalous outlier record.</p>
+                <div class="outlier-hunter-wrapper">
+                  <div class="clicker-stats" style="margin-bottom: 8px; display: flex; gap: 8px;">
+                    <div class="stat-box" style="flex: 1; background-color: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 8px; text-align: center;">
+                      <span class="stat-lbl" style="display: block; font-size: 8px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase;">Data Quality</span>
+                      <span id="outlier-score" class="stat-val" style="display: block; font-size: 13px; font-weight: 800; color: var(--text-primary); margin-top: 2px;">100%</span>
                     </div>
-                    <div class="stat-box">
-                      <span class="stat-lbl">Server CPU</span>
-                      <span id="clicker-cpu" class="stat-val">10%</span>
-                    </div>
-                    <div class="stat-box">
-                      <span class="stat-lbl">Glue Nodes</span>
-                      <span id="clicker-workers" class="stat-val">2</span>
+                    <div class="stat-box" style="flex: 1; background-color: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 8px; text-align: center;">
+                      <span class="stat-lbl" style="display: block; font-size: 8px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase;">Rows Cleaned</span>
+                      <span id="outlier-checked" class="stat-val" style="display: block; font-size: 13px; font-weight: 800; color: var(--text-primary); margin-top: 2px;">0</span>
                     </div>
                   </div>
                   
-                  <div class="progress-bar-container">
-                    <div id="clicker-cpu-bar" class="progress-bar-fill" style="width: 10%;"></div>
+                  <!-- Grid of 4 records to inspect -->
+                  <div class="outlier-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 8px;">
+                    <button class="outlier-btn" id="outlier-opt-0" onclick="checkOutlierSelection(0)" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 6px; padding: 8px; color: var(--text-primary); text-align: left; font-size: 10px; cursor: pointer; transition: all 0.15s; font-family: 'JetBrains Mono', monospace; min-height: 48px; width: 100%; box-sizing: border-box; outline: none; line-height: 1.3;">Loading...</button>
+                    <button class="outlier-btn" id="outlier-opt-1" onclick="checkOutlierSelection(1)" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 6px; padding: 8px; color: var(--text-primary); text-align: left; font-size: 10px; cursor: pointer; transition: all 0.15s; font-family: 'JetBrains Mono', monospace; min-height: 48px; width: 100%; box-sizing: border-box; outline: none; line-height: 1.3;">Loading...</button>
+                    <button class="outlier-btn" id="outlier-opt-2" onclick="checkOutlierSelection(2)" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 6px; padding: 8px; color: var(--text-primary); text-align: left; font-size: 10px; cursor: pointer; transition: all 0.15s; font-family: 'JetBrains Mono', monospace; min-height: 48px; width: 100%; box-sizing: border-box; outline: none; line-height: 1.3;">Loading...</button>
+                    <button class="outlier-btn" id="outlier-opt-3" onclick="checkOutlierSelection(3)" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 6px; padding: 8px; color: var(--text-primary); text-align: left; font-size: 10px; cursor: pointer; transition: all 0.15s; font-family: 'JetBrains Mono', monospace; min-height: 48px; width: 100%; box-sizing: border-box; outline: none; line-height: 1.3;">Loading...</button>
                   </div>
                   
-                  <div class="clicker-actions">
-                    <button class="btn btn-secondary btn-sm" style="padding: 6px 10px; font-size: 10px;" onclick="addGlueWorker()">Add Node ($100)</button>
-                    <button id="clicker-trigger-btn" class="btn btn-primary btn-sm" style="padding: 6px 10px; font-size: 10px; flex: 1;" onclick="triggerEtlRecord()">Trigger PySpark Job (+50K Rows)</button>
-                  </div>
-                  <div id="clicker-status-log" class="clicker-log">Ready to ingest S3 logs...</div>
+                  <div id="outlier-status-log" class="clicker-log" style="font-size: 10px; min-height: 32px; background-color: #0d1117; border-radius: 6px; border: 1px solid var(--border-color); padding: 6px 8px; color: #8b949e; font-family: 'JetBrains Mono', monospace; text-align: left;">Select the outlier cell above to run anomaly detection...</div>
                 </div>
               </div>
             </div>
@@ -1174,6 +1170,18 @@
                       <li>Automated data pipelines using AWS Glue and Lambda to process multi-source datasets into clean relational schemas supporting 100+ concurrent users.</li>
                     </ul>
                   </div>
+
+                  <div class="rv-exp-item">
+                    <div class="rv-exp-head">
+                      <strong>Frontend Developer Intern</strong>
+                      <span>June 2025 – Dec 2025</span>
+                    </div>
+                    <span class="rv-company">Groot Softwares • Jaipur</span>
+                    <ul class="rv-bullets">
+                      <li>Designed and built custom web components, interactive UI charts, and dashboards for internal business platforms using HTML5, CSS3, JavaScript, and Bootstrap.</li>
+                      <li>Optimized client frontend assets and local SEO code markup, improving core web vitals speed index by 30%.</li>
+                    </ul>
+                  </div>
                 </div>
 
                 <div class="rv-section">
@@ -1378,6 +1386,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=1.3.1"></script>
+  <script src="app.js?v=1.3.2"></script>
 </body>
 </html>

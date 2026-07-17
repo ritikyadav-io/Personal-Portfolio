@@ -2836,7 +2836,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   /* Safety bounds override to prevent horizontal scrolling / side screen clipping */
-  .about-asymmetric-wrapper, .about-left-col, .about-right-col, .pipeline-visual-card, .data-lab-card, .aws-game-card {
+  .about-asymmetric-wrapper, .about-left-col, .about-right-col, .pipeline-visual-card, .data-lab-card, .bi-lab-card, .sql-editor-wrapper, #sql-editor-input, .sql-output-log, .outlier-hunter-wrapper {
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
@@ -2855,7 +2855,14 @@ h1, h2, h3, h4, h5, h6 {
     padding: 8px !important;
   }
 
-  /* Prevent SQL Sandbox output from clipping or hiding elements on mobile */
+  /* Prevent SQL Sandbox output and inputs from clipping or hiding elements on mobile */
+  #sql-editor-input {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    height: 60px !important;
+  }
+  
   .sql-output-log {
     max-height: 180px !important;
     overflow-y: auto !important;
@@ -2865,14 +2872,17 @@ h1, h2, h3, h4, h5, h6 {
     white-space: pre !important;
   }
 
-  /* Clicker Game button stacking to prevent card stretching */
-  .clicker-actions {
-    flex-direction: column !important;
-    gap: 8px !important;
+  /* Outlier Game button stacking to prevent screen stretching on mobile */
+  .outlier-grid {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
   }
   
-  .clicker-actions button {
+  .outlier-btn {
     width: 100% !important;
+    padding: 10px !important;
+    font-size: 10px !important;
+    min-height: auto !important;
   }
 }
 
