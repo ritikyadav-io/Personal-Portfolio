@@ -606,11 +606,11 @@ function runSqlSimulator() {
       output.textContent =
 `✅ Query OK — 1 row returned (0.023 sec)
 
-+-------------------+-----------------------+------+-------------------+
-| company           | role                  | year | stack             |
-+-------------------+-----------------------+------+-------------------+
-| Graas Solutions   | Data Engineer AWS     | 2026 | Glue, Lambda, RDS |
-+-------------------+-----------------------+------+-------------------+`;
++-------------------+---------------------------+------+-----------------------+
+| company           | role                      | year | stack                 |
++-------------------+---------------------------+------+-----------------------+
+| Graas Solutions   | Data Analyst Intern       | 2026 | SQL, Power BI, Python |
++-------------------+---------------------------+------+-----------------------+`;
       output.classList.add('success');
     } else if (query.includes('PROJECT') || query.includes('DASHBOARD')) {
       output.textContent =
@@ -698,178 +698,182 @@ function updateClickerUI() {
   }
 }
 
-// AWS Trivia Challenge Game logic
-const awsQuestions = [
-  {
-    id: 1,
-    type: 'single',
-    question: 'Which AWS service crawls data sources, identifies formats, and populates the Glue Data Catalog with schema definitions?',
-    options: [
-      { id: 'A', text: 'AWS Athena' },
-      { id: 'B', text: 'AWS Glue Crawler' },
-      { id: 'C', text: 'Amazon Redshift Spectrum' },
-      { id: 'D', text: 'AWS Lambda' }
-    ],
-    answer: ['B'],
-    explanation: 'AWS Glue Crawlers connect to source data streams, identify file schemas, and write database table definitions to the Glue Data Catalog.'
-  },
-  {
-    id: 2,
-    type: 'multi',
-    question: 'Which services are serverless and scale automatically to process or ingest real-time streaming data? (Select all that apply)',
-    options: [
-      { id: 'A', text: 'Amazon EMR' },
-      { id: 'B', text: 'Amazon Kinesis Data Streams' },
-      { id: 'C', text: 'AWS Lambda' },
-      { id: 'D', text: 'Amazon EC2' }
-    ],
-    answer: ['B', 'C'],
-    explanation: 'Kinesis Data Streams and AWS Lambda are serverless services that automatically scale to ingest and process massive streaming data.'
-  },
-  {
-    id: 3,
-    type: 'single',
-    question: 'You want to run SQL queries directly against raw files stored in S3 without loading them into database tables. Which feature fits best?',
-    options: [
-      { id: 'A', text: 'Redshift Spectrum' },
-      { id: 'B', text: 'Redshift ML' },
-      { id: 'C', text: 'Redshift Concurrency Scaling' },
-      { id: 'D', text: 'AWS Glue Elastic Views' }
-    ],
-    answer: ['A'],
-    explanation: 'Redshift Spectrum allows executing SQL queries directly on raw files (Parquet, CSV, JSON) in S3 using external schema catalogs.'
-  },
-  {
-    id: 4,
-    type: 'multi',
-    question: 'Ritik needs to secure raw S3 buckets containing sensitive financial data. Which methods provide encryption at rest? (Select all that apply)',
-    options: [
-      { id: 'A', text: 'SSE-S3 (S3-Managed Keys)' },
-      { id: 'B', text: 'SSE-KMS (AWS KMS Keys)' },
-      { id: 'C', text: 'SSL/TLS Certificates' },
-      { id: 'D', text: 'HTTPS Protocol' }
-    ],
-    answer: ['A', 'B'],
-    explanation: 'SSE-S3 and SSE-KMS provide server-side encryption at rest. SSL/TLS and HTTPS secure data in motion (in transit).'
-  },
-  {
-    id: 5,
-    type: 'single',
-    question: 'Which AWS service provides a managed Hadoop and Apache Spark ecosystem for distributed big data compute processing?',
-    options: [
-      { id: 'A', text: 'AWS Batch' },
-      { id: 'B', text: 'Amazon RDS' },
-      { id: 'C', text: 'Amazon EMR' },
-      { id: 'D', text: 'AWS Fargate' }
-    ],
-    answer: ['C'],
-    explanation: 'Amazon EMR (Elastic MapReduce) is the primary AWS platform for running managed Hadoop, Spark, Hive, and Presto distributed workloads.'
-  }
-];
+// BI & A/B Testing Simulator Game Logic
+let currentBiScenario = 'funnel';
 
-let currentQuestionIndex = 0;
-const selectedAnswers = new Set();
+function selectBiScenario(scenario) {
+  currentBiScenario = scenario;
+  
+  // Update Scenario Buttons UI
+  const funnelBtn = document.getElementById('scenario-funnel-btn');
+  const pricingBtn = document.getElementById('scenario-pricing-btn');
+  const badge = document.getElementById('bi-lab-badge');
+  const labelModifier = document.getElementById('bi-label-modifier');
+  const selectModifier = document.getElementById('bi-var-modifier');
+  const labelMid = document.getElementById('bi-metric-label-mid');
+  const labelRoi = document.getElementById('bi-metric-label-roi');
 
-function loadAwsQuestion() {
-  const qText = document.getElementById('aws-question-text');
-  const optsContainer = document.getElementById('aws-options-container');
-  const badge = document.getElementById('aws-game-badge');
-  const logEl = document.getElementById('quiz-status-log');
-  const btnSubmit = document.getElementById('btn-submit-quiz');
-
-  if (!qText || !optsContainer || !badge || !logEl || !btnSubmit) return;
-
-  const currentQ = awsQuestions[currentQuestionIndex];
-  badge.textContent = `QUESTION ${currentQ.id}/${awsQuestions.length}`;
-  qText.innerHTML = `${currentQ.type === 'multi' ? '<span class="c-tag info" style="font-size: 8px; padding: 2px 4px; border-radius: 4px; background: rgba(58,166,255,0.1); margin-right: 6px;">[SELECT ALL]</span> ' : ''}${currentQ.question}`;
-  optsContainer.innerHTML = '';
-  logEl.textContent = 'Select option(s) above and click Submit.';
-  logEl.style.color = '#8b949e';
-  btnSubmit.textContent = 'Submit Answer';
-
-  currentQ.options.forEach(opt => {
-    const optDiv = document.createElement('div');
-    optDiv.className = 'quiz-opt-item';
-    optDiv.onclick = () => selectOption(opt.id, currentQ.type);
-    optDiv.setAttribute('data-id', opt.id);
-    optDiv.innerHTML = `
-      <span class="opt-bullet">${opt.id}</span>
-      <span class="opt-text">${opt.text}</span>
-    `;
-    optsContainer.appendChild(optDiv);
-  });
-}
-
-function selectOption(optId, type) {
-  const optsContainer = document.getElementById('aws-options-container');
-  if (!optsContainer) return;
-  const optItems = optsContainer.querySelectorAll('.quiz-opt-item');
-
-  if (type === 'single') {
-    selectedAnswers.clear();
-    selectedAnswers.add(optId);
-    optItems.forEach(item => {
-      if (item.getAttribute('data-id') === optId) {
-        item.classList.add('selected');
-      } else {
-        item.classList.remove('selected');
+  if (funnelBtn && pricingBtn && badge) {
+    if (scenario === 'funnel') {
+      funnelBtn.classList.add('active');
+      pricingBtn.classList.remove('active');
+      badge.textContent = 'SCENARIO: FUNNEL OPTIMIZATION';
+      
+      // Update Select Labels
+      if (labelModifier) labelModifier.textContent = 'Promo Discount:';
+      if (labelMid) labelMid.textContent = 'Avg Order Value';
+      if (labelRoi) labelRoi.textContent = 'Ad ROI (ROAS)';
+      
+      // Update Select Options
+      if (selectModifier) {
+        selectModifier.innerHTML = `
+          <option value="none">No Promo Discount</option>
+          <option value="10">10% Off Coupon</option>
+          <option value="20">20% Off Coupon</option>
+        `;
       }
-    });
-  } else {
-    if (selectedAnswers.has(optId)) {
-      selectedAnswers.delete(optId);
-      optItems.forEach(item => {
-        if (item.getAttribute('data-id') === optId) {
-          item.classList.remove('selected');
-        }
-      });
     } else {
-      selectedAnswers.add(optId);
-      optItems.forEach(item => {
-        if (item.getAttribute('data-id') === optId) {
-          item.classList.add('selected');
-        }
-      });
+      funnelBtn.classList.remove('active');
+      pricingBtn.classList.add('active');
+      badge.textContent = 'SCENARIO: SAAS PRICING';
+      
+      // Update Select Labels
+      if (labelModifier) labelModifier.textContent = 'Billing Contract:';
+      if (labelMid) labelMid.textContent = 'Customer LTV';
+      if (labelRoi) labelRoi.textContent = 'LTV/CAC Ratio';
+      
+      // Update Select Options
+      if (selectModifier) {
+        selectModifier.innerHTML = `
+          <option value="none">$99/mo Base Tier</option>
+          <option value="annual">Annual Billing Option</option>
+          <option value="enterprise">Enterprise Custom Tier</option>
+        `;
+      }
     }
   }
+  
+  // Run simulation with initial parameters
+  runBiSimulation();
 }
 
-function submitAwsAnswer() {
-  const currentQ = awsQuestions[currentQuestionIndex];
-  const logEl = document.getElementById('quiz-status-log');
-  const btnSubmit = document.getElementById('btn-submit-quiz');
-
-  if (!logEl || !btnSubmit) return;
-
-  if (btnSubmit.textContent === 'Next Question') {
-    currentQuestionIndex = (currentQuestionIndex + 1) % awsQuestions.length;
-    selectedAnswers.clear();
-    loadAwsQuestion();
-    return;
-  }
-
-  if (selectedAnswers.size === 0) {
-    logEl.textContent = '⚠ Please select an answer first!';
-    logEl.style.color = '#f59e0b';
-    return;
-  }
-
-  const userAnswers = Array.from(selectedAnswers).sort();
-  const correctAnswers = [...currentQ.answer].sort();
-
-  const isCorrect = userAnswers.length === correctAnswers.length &&
-                    userAnswers.every((val, index) => val === correctAnswers[index]);
-
-  if (isCorrect) {
-    logEl.innerHTML = `🎉 <strong>CORRECT!</strong> ${currentQ.explanation}`;
-    logEl.style.color = '#10b981';
-    btnSubmit.textContent = 'Next Question';
+function runBiSimulation() {
+  const layoutVal = document.getElementById('bi-var-layout').value;
+  const modVal = document.getElementById('bi-var-modifier').value;
+  
+  const convMetric = document.getElementById('bi-metric-conv');
+  const midMetric = document.getElementById('bi-metric-mid');
+  const roiMetric = document.getElementById('bi-metric-roi');
+  const logEl = document.getElementById('bi-status-log');
+  
+  if (!convMetric || !midMetric || !roiMetric || !logEl) return;
+  
+  let conv = '3.2%';
+  let mid = '$45.00';
+  let roi = '2.1x';
+  let logText = '';
+  
+  if (currentBiScenario === 'funnel') {
+    // E-commerce Funnel Scenario calculations
+    if (layoutVal === 'default') {
+      if (modVal === 'none') {
+        conv = '3.2%'; mid = '$45.00'; roi = '2.1x';
+        logText = `SELECT count(*), sum(revenue) FROM orders WHERE layout = 'default' AND promo = 'none';\n-- A/B Test result: Control group baseline. No statistical significance.`;
+      } else if (modVal === '10') {
+        conv = '4.5%'; mid = '$40.50'; roi = '2.4x';
+        logText = `SELECT count(*), sum(revenue) FROM orders WHERE layout = 'default' AND promo = '10_off';\n-- A/B Test result: p-value = 0.082 (Marginal significance). Coupon boosted sales volume.`;
+      } else {
+        conv = '5.0%'; mid = '$36.00'; roi = '2.0x';
+        logText = `SELECT count(*), sum(revenue) FROM orders WHERE layout = 'default' AND promo = '20_off';\n-- A/B Test result: p-value = 0.045 (Significant), but profit margin erosion reduced ROAS.`;
+      }
+    } else if (layoutVal === 'minimal') {
+      if (modVal === 'none') {
+        conv = '4.8%'; mid = '$45.00'; roi = '3.2x';
+        logText = `SELECT count(*), sum(revenue) FROM orders WHERE layout = 'minimal' AND promo = 'none';\n-- A/B Test result: p-value = 0.024 (Statistically Significant! Variant A wins over Control).`;
+      } else if (modVal === '10') {
+        conv = '5.8%'; mid = '$40.50'; roi = '3.5x';
+        logText = `SELECT count(*), sum(revenue) FROM orders WHERE layout = 'minimal' AND promo = '10_off';\n-- A/B Test result: p-value = 0.004 (Highly Significant!). Best business ROI configuration! 🎉`;
+      } else {
+        conv = '6.2%'; mid = '$36.00'; roi = '2.7x';
+        logText = `SELECT count(*), sum(revenue) FROM orders WHERE layout = 'minimal' AND promo = '20_off';\n-- A/B Test result: p-value = 0.001, but lower average order margins drags down ad ROAS.`;
+      }
+    } else { // social
+      if (modVal === 'none') {
+        conv = '4.2%'; mid = '$45.00'; roi = '2.8x';
+        logText = `SELECT count(*), sum(revenue) FROM orders WHERE layout = 'social' AND promo = 'none';\n-- A/B Test result: p-value = 0.095 (Marginal significance). Dense proof shows positive trend.`;
+      } else if (modVal === '10') {
+        conv = '5.2%'; mid = '$40.50'; roi = '3.1x';
+        logText = `SELECT count(*), sum(revenue) FROM orders WHERE layout = 'social' AND promo = '10_off';\n-- A/B Test result: p-value = 0.018 (Statistically Significant). Good conversion lift.`;
+      } else {
+        conv = '5.6%'; mid = '$36.00'; roi = '2.4x';
+        logText = `SELECT count(*), sum(revenue) FROM orders WHERE layout = 'social' AND promo = '20_off';\n-- A/B Test result: p-value = 0.012, but high discount hurts profit margins.`;
+      }
+    }
   } else {
-    logEl.innerHTML = `❌ <strong>INCORRECT.</strong> Try again! Hint: Look at ${correctAnswers.join(', ')}.`;
-    logEl.style.color = '#ef4444';
+    // SaaS Pricing Scenario calculations
+    if (layoutVal === 'default') {
+      if (modVal === 'none') {
+        conv = '1.2%'; mid = '$594.00'; roi = '1.8x';
+        logText = `SELECT avg(ltv), count(*) FROM SaaS_subs WHERE layout = 'default' AND billing = 'monthly';\n-- LTV/CAC ratio is 1.8. Recommended SaaS target ratio is > 3.0.`;
+      } else if (modVal === 'annual') {
+        conv = '0.8%'; mid = '$792.00'; roi = '2.2x';
+        logText = `SELECT avg(ltv), count(*) FROM SaaS_subs WHERE layout = 'default' AND billing = 'annual';\n-- Conv rate dropped by 33%, but higher cash flow and lower churn boosts LTV.`;
+      } else {
+        conv = '0.4%'; mid = '$1440.00'; roi = '2.5x';
+        logText = `SELECT avg(ltv), count(*) FROM SaaS_subs WHERE layout = 'default' AND billing = 'enterprise';\n-- Low conv volume, but large custom contract values increase customer LTV.`;
+      }
+    } else if (layoutVal === 'minimal') {
+      if (modVal === 'none') {
+        conv = '1.8%'; mid = '$594.00'; roi = '2.4x';
+        logText = `SELECT avg(ltv), count(*) FROM SaaS_subs WHERE layout = 'minimal' AND billing = 'monthly';\n-- A/B Test result: p-value = 0.021. Sleek UI increased monthly user acquisition.`;
+      } else if (modVal === 'annual') {
+        conv = '1.2%'; mid = '$792.00'; roi = '2.8x';
+        logText = `SELECT avg(ltv), count(*) FROM SaaS_subs WHERE layout = 'minimal' AND billing = 'annual';\n-- A/B Test result: p-value = 0.048. Clear annual billing benefits conversion.`;
+      } else {
+        conv = '0.6%'; mid = '$1440.00'; roi = '3.1x';
+        logText = `SELECT avg(ltv), count(*) FROM SaaS_subs WHERE layout = 'minimal' AND billing = 'enterprise';\n-- A/B Test p-value = 0.090 (Low sample size). LTV/CAC target > 3.0 achieved!`;
+      }
+    } else { // social
+      if (modVal === 'none') {
+        conv = '1.6%'; mid = '$594.00'; roi = '2.2x';
+        logText = `SELECT avg(ltv), count(*) FROM SaaS_subs WHERE layout = 'social' AND billing = 'monthly';\n-- A/B Test result: p-value = 0.065. Testimonials built user trust.`;
+      } else if (modVal === 'annual') {
+        conv = '1.4%'; mid = '$880.00'; roi = '3.4x';
+        logText = `SELECT avg(ltv), count(*) FROM SaaS_subs WHERE layout = 'social' AND billing = 'annual';\n-- A/B Test result: p-value = 0.012 (Statistically Significant!). Best LTV/CAC ratio! 🎉`;
+      } else {
+        conv = '0.8%'; mid = '$1600.00'; roi = '3.6x';
+        logText = `SELECT avg(ltv), count(*) FROM SaaS_subs WHERE layout = 'social' AND billing = 'enterprise';\n-- A/B Test result: p-value = 0.008 (Strong Significance!). Testimonials strongly validated value.`;
+      }
+    }
+  }
+  
+  // Animate change value flash
+  convMetric.style.transform = 'scale(1.1)';
+  midMetric.style.transform = 'scale(1.1)';
+  roiMetric.style.transform = 'scale(1.1)';
+  
+  setTimeout(() => {
+    convMetric.style.transform = 'scale(1)';
+    midMetric.style.transform = 'scale(1)';
+    roiMetric.style.transform = 'scale(1)';
+  }, 150);
+  
+  convMetric.textContent = conv;
+  midMetric.textContent = mid;
+  roiMetric.textContent = roi;
+  logEl.innerHTML = logText.replace(/\n/g, '<br>');
+  
+  // Adjust ROAS text color based on performance
+  const numericRoi = parseFloat(roi);
+  if (numericRoi >= 3.0) {
+    roiMetric.style.color = '#10b981'; // Green
+  } else if (numericRoi >= 2.4) {
+    roiMetric.style.color = '#f59e0b'; // Amber
+  } else {
+    roiMetric.style.color = '#ef4444'; // Red
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  loadAwsQuestion();
+  selectBiScenario('funnel');
 });
