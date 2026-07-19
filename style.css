@@ -398,6 +398,9 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   transition: all var(--transition-fast);
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  min-width: 40px;
+  min-height: 40px;
+  box-sizing: border-box;
 }
 .theme-toggle:hover {
   background-color: #f1f5f9;
@@ -2337,11 +2340,16 @@ h1, h2, h3, h4, h5, h6 {
   /* Prevent HTML/Body side scrolling */
   html, body {
     overflow-x: hidden !important;
+    width: 100% !important;
   }
 
   /* Safe Viewport Padding & Vertical Spacing */
   .container {
-    padding: 0 20px !important;
+    padding: 0 16px !important;
+  }
+  
+  .nav-container {
+    padding: 0 16px !important;
   }
   
   section {
@@ -2937,6 +2945,11 @@ h1, h2, h3, h4, h5, h6 {
 
   .rv-header h2 {
     font-size: 20px !important;
+  }
+
+  .bi-metrics-grid {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
   }
 }
 
