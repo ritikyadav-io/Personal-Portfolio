@@ -979,6 +979,10 @@ function runBiSimulation() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  selectBiScenario('funnel');
-  generateOutlierRound();
+  if (document.getElementById('bi-var-layout')) {
+    selectBiScenario('funnel');
+  }
+  if (document.getElementById('outlier-opt-0')) {
+    generateOutlierRound();
+  }
 });
