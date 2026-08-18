@@ -1771,29 +1771,29 @@ h1, h2, h3, h4, h5, h6 {
 
 .rv-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 32px;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
 }
 
 .rv-left-col, .rv-right-col {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .rv-section h3 {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   color: #111827 !important;
   letter-spacing: 0.05em;
-  border-bottom: 1px solid #CBD5E1;
-  padding-bottom: 6px;
-  margin-bottom: 12px;
+  border-bottom: 1.5px solid #1E293B;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
 }
 
 .rv-exp-item {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 .rv-exp-item:last-child {
   margin-bottom: 0;
@@ -1802,12 +1802,12 @@ h1, h2, h3, h4, h5, h6 {
 .rv-exp-head {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: 12px;
   color: #111827 !important;
 }
 
 .rv-company {
-  font-size: 12px;
+  font-size: 11px;
   color: #2563EB !important;
   font-weight: 600;
   margin-top: 1px;
@@ -1815,8 +1815,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .rv-bullets {
-  margin: 6px 0 0 16px;
-  font-size: 11px;
+  margin: 4px 0 0 14px;
+  font-size: 10.5px;
   color: #475569 !important;
   display: flex;
   flex-direction: column;
@@ -1824,7 +1824,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .rv-edu-item {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .rv-edu-head {
   display: flex;
@@ -1837,11 +1837,36 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   color: #475569 !important;
 }
+.rv-univ {
+  font-size: 10.5px;
+  color: #64748B !important;
+}
 
-.rv-skills-block, .rv-certs-block {
-  font-size: 11px;
+.rv-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 10.5px;
   color: #475569 !important;
-  line-height: 1.6;
+  line-height: 1.45;
+}
+
+.rv-skill-cat strong {
+  color: #1E293B !important;
+}
+
+.rv-certs-list {
+  padding-left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 10.5px;
+  color: #475569 !important;
+  line-height: 1.4;
+}
+
+.rv-certs-list li strong {
+  color: #1E293B !important;
 }
 
 .resume-download-bar {
@@ -2650,81 +2675,79 @@ h1, h2, h3, h4, h5, h6 {
     padding: 14px !important;
   }
 
-  /* Visual Resume Stacking & PDF Viewer Simulation */
+  /* Visual Resume Mobile Responsive Document Card */
   .resume-visual-card {
-    padding: 12px 14px !important;
-    max-height: 330px; /* Capped for compact PDF preview look */
-    overflow-y: auto;
+    padding: 20px 16px !important;
+    max-height: none !important;
+    overflow-y: visible !important;
     border: 1px solid #CBD5E1 !important;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.04), var(--shadow-sm) !important;
-    background-color: #F8FAFC !important;
-    scrollbar-width: thin;
-    scrollbar-color: #CBD5E1 #F8FAFC;
-  }
-  
-  .resume-visual-card::-webkit-scrollbar {
-    width: 5px;
-  }
-  .resume-visual-card::-webkit-scrollbar-track {
-    background: #F8FAFC;
-  }
-  .resume-visual-card::-webkit-scrollbar-thumb {
-    background-color: #CBD5E1;
-    border-radius: 4px;
+    box-shadow: var(--shadow-sm) !important;
+    background-color: #FFFFFF !important;
+    border-radius: 10px !important;
   }
 
-  /* Force all nested text inside visual resume to look like a tiny scaled PDF page on mobile */
-  .resume-visual-card * {
-    font-size: 10px !important;
-    line-height: 1.35 !important;
+  .dark-theme .resume-visual-card {
+    background-color: #F8FAFC !important;
   }
 
   .resume-visual-card h2 {
-    font-size: 14px !important;
+    font-size: 18px !important;
   }
 
   .resume-visual-card h3 {
+    font-size: 12px !important;
+    margin-top: 12px !important;
+    margin-bottom: 8px !important;
+    padding-bottom: 4px !important;
+  }
+
+  .resume-visual-card p,
+  .resume-visual-card span,
+  .resume-visual-card li,
+  .rv-skill-cat {
     font-size: 11px !important;
-    margin-top: 10px !important;
-    margin-bottom: 6px !important;
-    padding-bottom: 3px !important;
+    line-height: 1.45 !important;
   }
 
   .resume-visual-card .rv-company {
-    font-size: 9.5px !important;
+    font-size: 11px !important;
   }
 
   .resume-visual-card .rv-loc, 
   .resume-visual-card .rv-contact-details span {
-    font-size: 8.5px !important;
+    font-size: 10px !important;
   }
 
   .resume-visual-card .rv-bullets {
-    margin: 4px 0 0 12px !important;
-    gap: 3px !important;
+    margin: 6px 0 0 14px !important;
+    gap: 4px !important;
   }
 
   .resume-visual-card .rv-bullets li {
-    font-size: 9px !important;
+    font-size: 10.5px !important;
   }
   
   .rv-header {
     flex-direction: column !important;
-    gap: 10px !important;
+    gap: 8px !important;
     align-items: flex-start !important;
-    padding-bottom: 10px !important;
-    margin-bottom: 12px !important;
+    padding-bottom: 12px !important;
+    margin-bottom: 14px !important;
   }
   
   .rv-contact-details {
     align-items: flex-start !important;
     text-align: left !important;
-    gap: 1px !important;
+    gap: 2px !important;
   }
   
   .rv-grid {
     grid-template-columns: 1fr !important;
-    gap: 14px !important;
+    gap: 16px !important;
+  }
+
+  .rv-left-col, .rv-right-col {
+    gap: 16px !important;
   }
 
   /* Forms & Input Sizing */
