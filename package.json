@@ -1,0 +1,9 @@
+{
+  "name": "ritik-yadav-portfolio",
+  "version": "1.0.0",
+  "description": "Ritik Yadav - Data Analyst & BI Specialist Portfolio",
+  "scripts": {
+    "dev": "npx -y http-server . -o",
+    "start": "npx -y http-server . -o"
+  }
+}
