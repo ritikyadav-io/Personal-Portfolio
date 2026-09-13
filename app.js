@@ -103,9 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
       liveUrl: '',
       githubUrl: 'https://github.com/ritikyadav-io/AWS-Youtube-DataPipeline',
       metrics: [
-        { val: '100K+', lbl: 'Records Processed' },
-        { val: 'AWS S3', lbl: 'Data Lake Storage' },
-        { val: 'Athena', lbl: 'Serverless Querying' }
+        { val: 'PySpark ETL', lbl: 'Distributed Jobs' },
+        { val: 'AWS S3', lbl: 'Partitioned Lake' },
+        { val: 'Athena', lbl: 'Serverless SQL' }
       ],
       problem: 'Processing, transforming, and analyzing high-volume YouTube video metadata and channel engagement records across multiple categories requires automated cloud data processing without server maintenance overhead.',
       solution: 'Architected a serverless cloud data lakehouse on AWS utilizing S3 storage tiers, PySpark ETL scripts on AWS Glue, Glue Data Catalog schemas, and Amazon Athena for sub-second SQL analytics querying.',
@@ -113,11 +113,11 @@ document.addEventListener('DOMContentLoaded', () => {
         'Ingested multi-region YouTube trending datasets and video metadata into raw Amazon S3 staging buckets.',
         'Wrote distributed PySpark transformation jobs on AWS Glue to clean JSON/CSV records, resolve data type mismatches, and partition storage by region and category.',
         'Structured AWS Glue Crawlers to automatically infer schemas and maintain metadata tables in AWS Glue Data Catalog.',
-        'Engineered serverless SQL query models in Amazon Athena for ad-hoc business intelligence analysis on 100K+ records with zero compute idle costs.'
+        'Engineered serverless SQL query models in Amazon Athena for ad-hoc business intelligence analysis on metadata records with zero compute idle costs.'
       ],
       results: [
         'Automated multi-source data ingestion into partitioned S3 Data Lake storage.',
-        'Reduced query execution times by 60% through optimized Parquet format conversions and partition pruning in Athena.',
+        'Reduced query execution times through optimized Parquet format conversions and partition pruning in Athena.',
         'Delivered 100% serverless infrastructure with automated schema evolution.'
       ]
     },
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
       liveUrl: '',
       githubUrl: 'https://github.com/ritikyadav-io/AWS-Customer-Churn-Prediction-Model',
       metrics: [
-        { val: 'AWS Cloud ML', lbl: 'Pipeline Architecture' },
+        { val: 'AWS ML', lbl: 'Cloud Pipeline' },
         { val: '85%+', lbl: 'Prediction Accuracy' },
         { val: 'Cohort', lbl: 'Risk Classification' }
       ],
@@ -155,9 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
       liveUrl: '',
       githubUrl: 'https://github.com/ritikyadav-io/hr-analytics',
       metrics: [
-        { val: '50+', lbl: 'KPIs Evaluated' },
-        { val: '30%', lbl: 'Attrition Risk Drop' },
-        { val: '100%', lbl: 'Funnel Automation' }
+        { val: 'Power BI', lbl: 'DAX Modeling' },
+        { val: 'Attrition', lbl: 'Risk Cohorts' },
+        { val: 'Funnel', lbl: 'Recruitment Tracking' }
       ],
       problem: 'HR departments lacked quantitative dashboards tracking recruitment pipeline velocity, department-level tenure distributions, and predictive early-warning indicators for employee attrition.',
       solution: 'Designed a comprehensive HR intelligence platform surfacing attrition risk scores, recruitment funnel analytics, cost-per-hire metrics, and department health benchmarks.',
@@ -168,9 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'Created visual recruitment funnel trackers mapping candidates from initial outreach → screening → interview → offer → signed contract.'
       ],
       results: [
-        'Analyzed 50+ employee attributes across 1,400 records — identifying the top 5 churn prediction variables.',
-        'Proposed data-backed workforce policy updates that triggered a 30% reduction in high-risk employee attrition within 2 quarters.',
-        'Enabled HR managers to identify applicant bottleneck stages instantly — reducing average hiring cycles by 8 business days.'
+        'Analyzed key employee attributes across company records — identifying top churn prediction variables.',
+        'Proposed data-backed workforce policy updates that triggered a significant reduction in high-risk employee attrition.',
+        'Enabled HR managers to identify applicant bottleneck stages instantly.'
       ]
     },
     resume: {
@@ -181,9 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
       liveUrl: 'https://elevatecvapp.vercel.app',
       githubUrl: 'https://github.com/ritikyadav-io/ElevateCv',
       metrics: [
-        { val: '100+', lbl: 'Analysis Runs' },
-        { val: '65 → 90+', lbl: 'Score Boost' },
-        { val: 'Keyword', lbl: 'Extraction' }
+        { val: 'Claude API', lbl: 'LLM Engine' },
+        { val: 'ATS Rating', lbl: 'Keyword Match' },
+        { val: 'LangChain', lbl: 'Prompt Pipeline' }
       ],
       problem: 'Job applications are silently rejected by Applicant Tracking Systems due to poor keyword density, formatting issues, and mismatched skill phrasing — candidates have no visibility into why.',
       solution: 'Built an intelligent resume analyzer that parses PDF uploads, performs semantic comparison against job descriptions, generates ATS compatibility scores, and writes actionable improvement recommendations.',
@@ -194,9 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'Built a React dashboard displaying live ATS gauge visualizations, bullet-level rewrite suggestions, and missing keyword highlights.'
       ],
       results: [
-        'Processed 100+ resume analysis runs with sub-4-second response times per analysis cycle.',
-        'Users reported ATS compatibility score improvements from 65 → 90+ after applying recommended changes.',
-        'Automated identification of formatting errors, missing keywords, and section ordering issues that manual review would miss.'
+        'Processed resume analysis runs with fast response times per analysis cycle.',
+        'Users reported ATS compatibility score improvements after applying recommended changes.',
+        'Automated identification of formatting errors, missing keywords, and section ordering issues.'
       ]
     },
     restaurant: {
@@ -207,9 +207,9 @@ document.addEventListener('DOMContentLoaded', () => {
       liveUrl: '',
       githubUrl: '',
       metrics: [
-        { val: '200+', lbl: 'Monthly Visitors' },
-        { val: '30%', lbl: 'Booking Growth' },
-        { val: '#1 Rank', lbl: 'Local SEO Terms' }
+        { val: 'Next.js', lbl: 'Static Web App' },
+        { val: 'WhatsApp', lbl: 'Direct Booking' },
+        { val: 'Local SEO', lbl: 'Google Search' }
       ],
       problem: 'A popular local dining establishment had zero digital presence — losing customers who searched online for menus, location details, operating hours, and table reservation options.',
       solution: 'Deployed a fully responsive, SEO-optimized restaurant platform showcasing gourmet menus, customer reviews, embedded Google Maps, and instant WhatsApp table reservation flows.',
@@ -217,12 +217,12 @@ document.addEventListener('DOMContentLoaded', () => {
         'Built a high-performance static site using Next.js with optimized image loading, code splitting, and lazy hydration.',
         'Implemented semantic HTML5 structures, comprehensive meta tags, Open Graph markup, and JSON-LD schema for local business SEO.',
         'Integrated a direct WhatsApp Business booking link that pre-formats customer details (party size, date, time) into a single tap-to-send message.',
-        'Audited and compressed all imagery assets — achieving 95+ Lighthouse performance scores across mobile and desktop.'
+        'Audited and compressed all imagery assets — achieving high Lighthouse performance scores across mobile and desktop.'
       ],
       results: [
-        'Captured 200+ unique monthly visitors within the first 30 days of launch.',
-        'Increased online-driven table reservations by 30% through the WhatsApp booking pathway.',
-        'Secured #1 Google Maps ranking for targeted local restaurant keyword searches.'
+        'Captured steady unique monthly visitors within the first 30 days of launch.',
+        'Increased online-driven table reservations through the WhatsApp booking pathway.',
+        'Secured top Google Maps ranking for targeted local restaurant keyword searches.'
       ]
     },
     movies: {
@@ -233,9 +233,9 @@ document.addEventListener('DOMContentLoaded', () => {
       liveUrl: 'https://moviesdna.lovable.app',
       githubUrl: '',
       metrics: [
-        { val: 'Video Reels', lbl: 'Actresses & Cast Highlights' },
-        { val: 'AI Engine', lbl: 'Smart Recommendations' },
-        { val: 'Rich Summaries', lbl: 'Plot & Cast Details' }
+        { val: 'Video Reels', lbl: 'Actresses & Cast' },
+        { val: 'AI Engine', lbl: 'Smart Discovery' },
+        { val: 'MoviesDNA', lbl: 'Live App' }
       ],
       problem: 'Movie enthusiasts lack an interactive platform to watch high-engagement short reels, explore actress and cast profiles, and receive instant personalized movie recommendations.',
       solution: 'Engineered MoviesDNA, a modern movie discovery and recommendation platform delivering curated short video reels, actress/cast bios, full plot summaries, and algorithmic movie matching.',
