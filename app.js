@@ -959,3 +959,156 @@ document.addEventListener('DOMContentLoaded', () => {
     generateOutlierRound();
   }
 });
+
+/* ==========================================================================
+   FLOATING AI ASSISTANT CHATBOT LOGIC
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById('chatbot-toggle-btn');
+  const chatWindow = document.getElementById('chatbot-window');
+  const closeBtn = document.getElementById('chat-close-btn');
+  const chatMessages = document.getElementById('chat-messages');
+  const chatForm = document.getElementById('chat-form');
+  const chatInput = document.getElementById('chat-input');
+  const quickChips = document.querySelectorAll('.quick-chip');
+
+  if (!toggleBtn || !chatWindow) return;
+
+  // 10 Most Asked Questions & Answers Data
+  const faqData = {
+    1: {
+      q: "🎓 Background & Degree",
+      a: "Ritik Yadav is pursuing his B.Tech in Artificial Intelligence & Data Science at Arya College of Engineering and IT (RTU, Jaipur), graduating in 2027. He is an ambitious fresher passionate about AWS Data Engineering, PySpark ETL, SQL query tuning, and Data Analytics."
+    },
+    2: {
+      q: "💼 Entry-Level Target Roles",
+      a: "Ritik is open to entry-level / fresher positions in India & remote, including:\n• AWS Data Engineer Intern\n• Junior Data Engineer\n• Data Analyst (Fresher)\n• Cloud Data Developer"
+    },
+    3: {
+      q: "⚡ Core Technical Skills",
+      a: "Ritik's core technical stack includes:\n• Data Engineering: PySpark, AWS Glue, AWS S3, Amazon Athena, ETL Pipelines\n• Databases & SQL: PostgreSQL, Amazon RDS, Supabase, SQL Query Tuning, Indexing\n• Data Analytics: Python (Pandas, NumPy), Power BI, DAX, Excel\n• Dev Tools & Core CS: Git, GitHub, VS Code, Linux/Bash, Learning DSA & OOPs"
+    },
+    4: {
+      q: "☁️ AWS YouTube Data Pipeline",
+      a: "Ritik engineered an end-to-end cloud data pipeline for YouTube trending metadata:\n• Ingests raw JSON/CSV data into Amazon S3 staging buckets\n• Runs PySpark transformation jobs on AWS Glue\n• Crawls schemas into AWS Glue Data Catalog\n• Enables serverless SQL queries via Amazon Athena with partition pruning."
+    },
+    5: {
+      q: "📊 Data Analytics & Power BI",
+      a: "Ritik built the HR Retention & Cohort Analytics suite using SQL Server, Python, and Power BI:\n• Analyzed employee tenure & attrition risk factors\n• Created interactive recruitment funnel tracking models\n• Modeled DAX measures for executive reporting dashboards."
+    },
+    6: {
+      q: "🚀 AWS Data Engineer Internship",
+      a: "Ritik worked as an AWS Data Engineer & Data Analyst Intern at Graas Solutions (May 2026 – August 2026):\n• Engineered automated PySpark and AWS Glue ETL data pipelines\n• Tuned complex RDS PostgreSQL SQL queries, achieving 40% performance speedups\n• Automated reporting workflows to cut manual compilation time."
+    },
+    7: {
+      q: "🧠 Learning DSA & CS Fundamentals",
+      a: "Ritik is actively strengthening his Computer Science fundamentals by learning Data Structures & Algorithms (DSA), practicing problem solving in Python & C++, and studying Object-Oriented Programming (OOPs) and DBMS principles."
+    },
+    8: {
+      q: "🎬 Movie Recommendation Site (MoviesDNA)",
+      a: "MoviesDNA (moviesdna.lovable.app) is an interactive film discovery platform featuring:\n• Curated video reels & short highlights\n• Actress & cast profiles with filmographies\n• Rich movie plot summaries & AI recommendation engine."
+    },
+    9: {
+      q: "📄 Download ATS Resume PDF",
+      a: "You can view & download Ritik's ATS-optimized PDF resume directly on this site in the Interactive Resume section, or click the PDF Resume download button in the header!"
+    },
+    10: {
+      q: "📞 Contact & Social Links",
+      a: "You can connect with Ritik directly:\n• Email: yadavritik2027@gmail.com\n• Phone / WhatsApp: +91-8824318839\n• LinkedIn: linkedin.com/in/ritikyadav18\n• GitHub: github.com/ritikyadav-io\n• Location: Jaipur, Rajasthan, India"
+    }
+  };
+
+  const toggleChat = () => {
+    const isOpen = chatWindow.classList.toggle('open');
+    chatWindow.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    if (isOpen) {
+      chatInput.focus();
+    }
+  };
+
+  const closeChat = () => {
+    chatWindow.classList.remove('open');
+    chatWindow.setAttribute('aria-hidden', 'true');
+  };
+
+  toggleBtn.addEventListener('click', toggleChat);
+  if (closeBtn) closeBtn.addEventListener('click', closeChat);
+
+  // Close with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && chatWindow.classList.contains('open')) {
+      closeChat();
+    }
+  });
+
+  const appendMsg = (sender, text) => {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `chat-msg ${sender}-msg`;
+    const formattedText = text.replace(/\n/g, '<br>');
+    msgDiv.innerHTML = `<div class="msg-bubble">${formattedText}</div>`;
+    chatMessages.appendChild(msgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  };
+
+  const simulateBotReply = (text) => {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'chat-msg bot-msg typing-msg';
+    typingDiv.innerHTML = `<div class="msg-bubble">⏳ Thinking...</div>`;
+    chatMessages.appendChild(typingDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    setTimeout(() => {
+      typingDiv.remove();
+      appendMsg('bot', text);
+    }, 500);
+  };
+
+  // Quick Chips Click Listener
+  quickChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const qId = chip.getAttribute('data-q');
+      const item = faqData[qId];
+      if (!item) return;
+
+      appendMsg('user', item.q);
+      simulateBotReply(item.a);
+    });
+  });
+
+  // Free-form Input Form Submission
+  chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const query = chatInput.value.trim();
+    if (!query) return;
+
+    appendMsg('user', query);
+    chatInput.value = '';
+
+    const lower = query.toLowerCase();
+
+    // Smart Matcher Engine
+    if (lower.includes('contact') || lower.includes('email') || lower.includes('phone') || lower.includes('whatsapp') || lower.includes('reach') || lower.includes('hire') || lower.includes('social') || lower.includes('instagram') || lower.includes('linkedin')) {
+      simulateBotReply(faqData[10].a);
+    } else if (lower.includes('resume') || lower.includes('cv') || lower.includes('pdf') || lower.includes('download')) {
+      simulateBotReply(faqData[9].a);
+    } else if (lower.includes('movie') || lower.includes('moviesdna') || lower.includes('reel') || lower.includes('actress')) {
+      simulateBotReply(faqData[8].a);
+    } else if (lower.includes('dsa') || lower.includes('algorithm') || lower.includes('structure') || lower.includes('cs')) {
+      simulateBotReply(faqData[7].a);
+    } else if (lower.includes('intern') || lower.includes('graas') || lower.includes('work') || lower.includes('experience')) {
+      simulateBotReply(faqData[6].a);
+    } else if (lower.includes('analytics') || lower.includes('power bi') || lower.includes('hr') || lower.includes('dax')) {
+      simulateBotReply(faqData[5].a);
+    } else if (lower.includes('aws') || lower.includes('pipeline') || lower.includes('youtube') || lower.includes('glue') || lower.includes('pyspark') || lower.includes('athena')) {
+      simulateBotReply(faqData[4].a);
+    } else if (lower.includes('skill') || lower.includes('python') || lower.includes('sql') || lower.includes('database') || lower.includes('postgres')) {
+      simulateBotReply(faqData[3].a);
+    } else if (lower.includes('role') || lower.includes('job') || lower.includes('fresher') || lower.includes('entry') || lower.includes('opportunity')) {
+      simulateBotReply(faqData[2].a);
+    } else if (lower.includes('background') || lower.includes('education') || lower.includes('college') || lower.includes('btech') || lower.includes('arya')) {
+      simulateBotReply(faqData[1].a);
+    } else {
+      simulateBotReply("I'm Ritik's AI Assistant! I can help you explore Ritik Yadav's AWS Data Engineering projects, Python & SQL skills, internship background, and resume. Click any of the 10 quick questions above or ask me about his projects & contact details!");
+    }
+  });
+});

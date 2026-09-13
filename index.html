@@ -1165,6 +1165,85 @@
 
 
 
+  <!-- FLOATING AI ASSISTANT CHATBOT (Bottom Right Widget) -->
+  <div class="chatbot-widget-container" id="chatbot-widget">
+    <!-- Floating Trigger Button -->
+    <button class="chatbot-trigger-btn" id="chatbot-toggle-btn" aria-label="Open Ritik's AI Assistant" title="Ask Ritik's AI Assistant">
+      <div class="bot-icon-wrapper">
+        <svg class="cloud-bot-svg" width="34" height="30" viewBox="0 0 36 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 7C11 3.13401 14.134 0 18 0C21.4019 0 24.218 2.43168 24.8465 5.67965C25.2187 5.56269 25.6033 5.5 26 5.5C29.3137 5.5 32 8.18629 32 11.5C32 12.0152 31.9351 12.5152 31.8135 12.9922C34.2541 14.0772 36 16.5398 36 19.5C36 23.6421 32.6421 27 28.5 27H7.5C3.35786 27 0 23.6421 0 19.5C0 15.6548 2.89317 12.4851 6.61118 12.0519C6.21334 10.9304 6 9.73489 6 8.5C6 4.35786 9.35786 1 13.5 1" fill="#3B82F6"/>
+          <rect x="7" y="9" width="22" height="15" rx="3" fill="#0F172A" stroke="#1E293B" stroke-width="1.5"/>
+          <path d="M11 13L15 16.5L11 20" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="17" y1="20" x2="22" y2="20" stroke="#38BDF8" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="online-indicator"></span>
+      <span class="trigger-text">Ask AI</span>
+    </button>
+
+    <!-- Chatbot Window Drawer -->
+    <div class="chatbot-window" id="chatbot-window" aria-hidden="true" role="dialog">
+      <!-- Window Header -->
+      <div class="chat-header">
+        <div class="chat-bot-info">
+          <div class="chat-avatar">
+            <svg class="cloud-bot-svg-sm" width="26" height="22" viewBox="0 0 36 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 7C11 3.13401 14.134 0 18 0C21.4019 0 24.218 2.43168 24.8465 5.67965C25.2187 5.56269 25.6033 5.5 26 5.5C29.3137 5.5 32 8.18629 32 11.5C32 12.0152 31.9351 12.5152 31.8135 12.9922C34.2541 14.0772 36 16.5398 36 19.5C36 23.6421 32.6421 27 28.5 27H7.5C3.35786 27 0 23.6421 0 19.5C0 15.6548 2.89317 12.4851 6.61118 12.0519C6.21334 10.9304 6 9.73489 6 8.5C6 4.35786 9.35786 1 13.5 1" fill="#3B82F6"/>
+              <rect x="7" y="9" width="22" height="15" rx="3" fill="#0F172A" stroke="#1E293B" stroke-width="1.5"/>
+              <path d="M11 13L15 16.5L11 20" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="17" y1="20" x2="22" y2="20" stroke="#38BDF8" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="chat-title">Ritik's AI Assistant</h3>
+            <span class="chat-status">● Online — Ask me about Ritik!</span>
+          </div>
+        </div>
+        <button class="chat-close-btn" id="chat-close-btn" aria-label="Close Chat">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- Messages Body Area -->
+      <div class="chat-messages" id="chat-messages">
+        <div class="chat-msg bot-msg">
+          <div class="msg-bubble">
+            👋 <strong>Hi there! I'm Ritik's AI Portfolio Assistant.</strong><br>
+            Ask me anything about Ritik Yadav's AWS Data Engineering &amp; Analytics projects, skills, internship, or resume.
+          </div>
+        </div>
+        
+        <div class="chat-msg bot-msg">
+          <div class="msg-bubble">
+            <strong>Here are 10 top questions you can ask:</strong>
+          </div>
+        </div>
+
+        <!-- 10 Interactive Quick-Question Chips -->
+        <div class="quick-questions-wrapper" id="quick-questions">
+          <button class="quick-chip" data-q="1">🎓 Background &amp; Degree</button>
+          <button class="quick-chip" data-q="2">💼 Entry-Level Target Roles</button>
+          <button class="quick-chip" data-q="3">⚡ Core Technical Skills</button>
+          <button class="quick-chip" data-q="4">☁️ AWS YouTube Data Pipeline</button>
+          <button class="quick-chip" data-q="5">📊 Data Analytics &amp; Power BI</button>
+          <button class="quick-chip" data-q="6">🚀 AWS Data Engineer Internship</button>
+          <button class="quick-chip" data-q="7">🧠 Learning DSA &amp; CS Fundamentals</button>
+          <button class="quick-chip" data-q="8">🎬 Movie Recommendation Site (MoviesDNA)</button>
+          <button class="quick-chip" data-q="9">📄 Download ATS Resume PDF</button>
+          <button class="quick-chip" data-q="10">📞 Contact &amp; Social Links</button>
+        </div>
+      </div>
+
+      <!-- Chat Input Form -->
+      <form class="chat-input-form" id="chat-form">
+        <input type="text" id="chat-input" placeholder="Ask about Ritik's skills, projects..." autocomplete="off" required>
+        <button type="submit" class="chat-send-btn" aria-label="Send message">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- IMMERSIVE CASE STUDY MODAL OVERLAY -->
   <div class="modal-overlay" id="case-study-modal" aria-hidden="true" role="dialog">
     <div class="modal-container">
