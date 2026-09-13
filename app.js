@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     restaurant: {
-      category: 'Web Dev',
+      category: 'Interactive App',
       title: 'Luxury Restaurant SEO Landing Page & Booking System',
       tech: ['Next.js', 'Supabase', 'Tailwind CSS', 'Google Maps API', 'WhatsApp Business'],
       img: 'assets/restaurant.svg',
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     movies: {
-      category: 'Web Dev & AI',
+      category: 'AI & Media Platform',
       title: 'MoviesDNA — Movie Recommendation Platform & Media Engine',
       tech: ['React', 'AI Recommendation Engine', 'Media Reels', 'TMDB Movie API', 'Tailwind CSS'],
       img: 'assets/clinic.svg',
