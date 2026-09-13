@@ -225,56 +225,30 @@ document.addEventListener('DOMContentLoaded', () => {
         'Secured #1 Google Maps ranking for targeted local restaurant keyword searches.'
       ]
     },
-    clinic: {
-      category: 'Web Dev',
-      title: 'ClinicPortal — Smart Healthcare Appointment Platform',
-      tech: ['Next.js', 'Supabase Database', 'Stripe API', 'n8n', 'Twilio'],
+    movies: {
+      category: 'Web Dev & AI',
+      title: 'MoviesDNA — Movie Recommendation Platform & Media Engine',
+      tech: ['React', 'AI Recommendation Engine', 'Media Reels', 'TMDB Movie API', 'Tailwind CSS'],
       img: 'assets/clinic.svg',
-      liveUrl: '',
+      liveUrl: 'https://moviesdna.lovable.app',
       githubUrl: '',
       metrics: [
-        { val: '100+', lbl: 'Slots Secured' },
-        { val: '40%', lbl: 'Call Volume Drop' },
-        { val: '95%', lbl: 'Patient Satisfaction' }
+        { val: 'Video Reels', lbl: 'Actresses & Cast Highlights' },
+        { val: 'AI Engine', lbl: 'Smart Recommendations' },
+        { val: 'Rich Summaries', lbl: 'Plot & Cast Details' }
       ],
-      problem: 'Healthcare reception desks spent hours managing patient appointments via manual phone logs — resulting in double-bookings, missed appointments, and frustrated patients.',
-      solution: 'Built ClinicPortal, a full-stack scheduling platform where patients browse available slots, book appointments, verify insurance, make payments, and receive automated SMS confirmations.',
+      problem: 'Movie enthusiasts lack an interactive platform to watch high-engagement short reels, explore actress and cast profiles, and receive instant personalized movie recommendations.',
+      solution: 'Engineered MoviesDNA, a modern movie discovery and recommendation platform delivering curated short video reels, actress/cast bios, full plot summaries, and algorithmic movie matching.',
       approach: [
-        'Designed a slot-based scheduling database in Supabase with transaction-level locking to prevent double-booking race conditions.',
-        'Configured Stripe checkout flows for appointment fee processing with automatic refund triggers for cancellations.',
-        'Built n8n webhook automation chains linking payment confirmations → Twilio SMS appointment reminders → Google Calendar sync.',
-        'Engineered an admin dashboard for medical staff to manage schedules, view patient histories, and adjust availability in real-time.'
+        'Built an interactive media feed supporting short video reels and actress/actor spotlight cards.',
+        'Integrated movie metadata API endpoints to fetch high-res posters, cast filmographies, character roles, and plot summaries dynamically.',
+        'Designed an intuitive recommendation engine surfacing trending titles, genre filters, and similar film recommendations.',
+        'Optimized media asset caching and video player performance for fast playback and smooth horizontal reel scrolling across mobile and desktop devices.'
       ],
       results: [
-        'Secured 100+ online patient bookings in the initial 30-day deployment phase.',
-        'Reduced incoming administrative call traffic by 40% — freeing reception staff for core clinical duties.',
-        'Achieved a 95% patient satisfaction rating on post-appointment feedback surveys.'
-      ]
-    },
-    seo: {
-      category: 'Performance',
-      title: 'SEO Audit Dashboard & Performance Reporting Suite',
-      tech: ['Next.js', 'Lighthouse API', 'Python', 'Google Search Console API', 'PostgreSQL'],
-      img: 'assets/seo.svg',
-      liveUrl: '',
-      githubUrl: '',
-      metrics: [
-        { val: '10+', lbl: 'Sites Monitored' },
-        { val: '100+', lbl: 'Issues Fixed' },
-        { val: '40%', lbl: 'Avg Speed Boost' }
-      ],
-      problem: 'Website owners lack a single-pane-of-glass view aggregating Core Web Vitals, accessibility scores, broken SEO schema, and indexing health — forcing manual Lighthouse runs across multiple properties.',
-      solution: 'Created an automated audit dashboard that periodically queries target sites via Lighthouse and Search Console APIs, tracks performance trends over time, and highlights critical optimization opportunities.',
-      approach: [
-        'Built a Python cron scheduler executing daily Lighthouse API audits across 10+ customer domains.',
-        'Stored audit results in a PostgreSQL time-series schema enabling week-over-week trend analysis and regression detection.',
-        'Designed React dashboard views with interactive speed gauge charts, accessibility compliance trackers, and SEO health indicators.',
-        'Implemented Slack/email alert notifications triggered when CLS, LCP, or FID metrics exceed defined thresholds.'
-      ],
-      results: [
-        'Maintained continuous daily monitoring logs across 10+ production customer websites.',
-        'Identified and resolved 100+ critical performance bottlenecks (uncompressed assets, render-blocking scripts, missing alt tags).',
-        'Improved average page load speeds by 40% across all monitored sites — directly boosting search engine rankings.'
+        'Deployed full-featured movie discovery web app live at moviesdna.lovable.app.',
+        'Seamlessly integrated short video reels, actress profiles, cast details, and plot summaries in one clean interface.',
+        'Achieved instant client-side rendering with responsive touch-friendly navigation.'
       ]
     }
   };
@@ -612,7 +586,7 @@ function runSqlSimulator() {
 +-------------------+---------------------------+------+-----------------------+
 | company           | role                      | year | stack                 |
 +-------------------+---------------------------+------+-----------------------+
-| Graas Solutions   | Data Analyst Intern       | 2026 | SQL, Power BI, Python |
+| Graas Solutions   | AWS Data Engineer Intern   | 2026 | PySpark, AWS Glue, SQL |
 +-------------------+---------------------------+------+-----------------------+`;
       output.classList.add('success');
     } else if (query.includes('PROJECT') || query.includes('DASHBOARD')) {
