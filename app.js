@@ -95,66 +95,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 4. Case Studies Data & Template Engine
   const caseStudiesData = {
-    okjobs: {
-      category: 'Full-Stack Data Platform',
-      title: 'OKJobs — AI-Powered Job Intelligence Board',
-      tech: ['Next.js', 'FastAPI', 'PostgreSQL', 'Claude API', 'n8n', 'Resend'],
+    youtube: {
+      category: 'Cloud Data Engineering',
+      title: 'AWS YouTube Data Pipeline & Analysis Engine',
+      tech: ['AWS Glue', 'PySpark', 'Amazon S3', 'Amazon Athena', 'Python', 'SQL'],
       img: 'assets/okjobs.svg',
       liveUrl: '',
-      githubUrl: '',
+      githubUrl: 'https://github.com/ritikyadav-io/AWS-Youtube-DataPipeline',
       metrics: [
-        { val: '10,000+', lbl: 'Listings Processed' },
-        { val: '95%', lbl: 'Match Relevance' },
-        { val: '100%', lbl: 'Google Sheets Sync' }
+        { val: '100K+', lbl: 'Records Processed' },
+        { val: 'AWS S3', lbl: 'Data Lake Storage' },
+        { val: 'Athena', lbl: 'Serverless Querying' }
       ],
-      problem: 'Job seekers spend 2+ hours daily filtering irrelevant listings across fragmented platforms, with no intelligent recommendation engine or centralized tracking system to prioritize opportunities.',
-      solution: 'Engineered an end-to-end AI job intelligence platform featuring real-time multi-source scraping, Claude API semantic matching, automated Google Sheets syncing, and a smart follow-up email pipeline.',
+      problem: 'Processing, transforming, and analyzing high-volume YouTube video metadata and channel engagement records across multiple categories requires automated cloud data processing without server maintenance overhead.',
+      solution: 'Architected a serverless cloud data lakehouse on AWS utilizing S3 storage tiers, PySpark ETL scripts on AWS Glue, Glue Data Catalog schemas, and Amazon Athena for sub-second SQL analytics querying.',
       approach: [
-        'Architected daily n8n workflow triggers executing Python scraper modules across LinkedIn, Internshala, Wellfound, and startup career portals.',
-        'Built a FastAPI backend orchestrating semantic relevance checks via Anthropic Claude API — scoring jobs against user skill vectors.',
-        'Designed an optimized PostgreSQL schema with composite indexes for sub-50ms query response on 10K+ listing datasets.',
-        'Developed a Next.js dashboard rendering recommendation rationale cards with 1-click Google Sheets sync for centralized application tracking.',
-        'Integrated Resend API for automated follow-up email sequences triggered by application status changes.'
+        'Ingested multi-region YouTube trending datasets and video metadata into raw Amazon S3 staging buckets.',
+        'Wrote distributed PySpark transformation jobs on AWS Glue to clean JSON/CSV records, resolve data type mismatches, and partition storage by region and category.',
+        'Structured AWS Glue Crawlers to automatically infer schemas and maintain metadata tables in AWS Glue Data Catalog.',
+        'Engineered serverless SQL query models in Amazon Athena for ad-hoc business intelligence analysis on 100K+ records with zero compute idle costs.'
       ],
       results: [
-        'Processed 10,000+ real job listings with production-grade reliability across 5 concurrent data sources.',
-        'Achieved 95%+ precision in AI match accuracy validated through manual user feedback sampling.',
-        'Eliminated 2 hours of daily manual filtering — users reported 0 minutes of manual job search after setup.'
+        'Automated multi-source data ingestion into partitioned S3 Data Lake storage.',
+        'Reduced query execution times by 60% through optimized Parquet format conversions and partition pruning in Athena.',
+        'Delivered 100% serverless infrastructure with automated schema evolution.'
       ]
     },
-    sales: {
-      category: 'Business Intelligence',
-      title: 'Enterprise Sales Performance Analytics Dashboard',
-      tech: ['Power BI', 'SQL Server', 'DAX', 'Data Modeling', 'Excel'],
+    churn: {
+      category: 'Cloud ML & Analytics',
+      title: 'AWS Customer Churn Prediction & Risk Pipeline',
+      tech: ['AWS S3', 'Python', 'Scikit-Learn', 'SQL', 'AWS Cloud Services'],
       img: 'assets/sales.svg',
       liveUrl: '',
-      githubUrl: '',
+      githubUrl: 'https://github.com/ritikyadav-io/AWS-Customer-Churn-Prediction-Model',
       metrics: [
-        { val: '100K+', lbl: 'Invoices Modeled' },
-        { val: '15%', lbl: 'Decision Lag Reduction' },
-        { val: '98%', lbl: 'Forecasting Accuracy' }
+        { val: 'AWS Cloud ML', lbl: 'Pipeline Architecture' },
+        { val: '85%+', lbl: 'Prediction Accuracy' },
+        { val: 'Cohort', lbl: 'Risk Classification' }
       ],
-      problem: 'C-suite executives operated on rigid monthly spreadsheet exports, preventing real-time identification of pipeline bottlenecks, conversion rate dips, and regional revenue deviations.',
-      solution: 'Architected a multi-tiered corporate Sales Analytics dashboard delivering real-time pipeline visibility, interactive conversion funnels, product cohort trackers, and predictive revenue forecasting.',
+      problem: 'SaaS platforms experience unmonitored customer churn without real-time behavior analytics, predictive risk scoring, and early warning indicators for high-value accounts.',
+      solution: 'Engineered an end-to-end customer churn prediction workflow using AWS cloud infrastructure, scikit-learn classification models, feature engineering pipelines, and risk cohort analytics.',
       approach: [
-        'Wrote complex SQL transformation scripts to clean, normalize, and aggregate 100K+ raw sales ledger records from 3 regional databases.',
-        'Designed a star-schema data model in Power BI with optimized relationship cardinalities and row-level security (RLS) for department-based access.',
-        'Developed 20+ DAX measures including YoY growth rates, rolling 90-day averages, customer lifetime value (CLV) segments, and dynamic territory rankings.',
-        'Configured automated daily gateway refreshes with email-triggered executive summary digests at 8AM.'
+        'Extracted, cleaned, and normalized customer engagement logs, billing history, and support usage metrics stored in AWS S3.',
+        'Engineered 20+ predictive feature variables including tenure length, monthly charges, contract type, payment methods, and activity frequency.',
+        'Trained and evaluated machine learning classification models (Random Forest, Logistic Regression, XGBoost) to predict churn probability.',
+        'Structured risk cohort tiers (High, Medium, Low Risk) enabling customer success teams to initiate proactive retention campaigns.'
       ],
       results: [
-        'Modeled and processed a historical database containing 100K+ transactional billing records.',
-        'Reduced corporate decision-making latency by 15% — shifting sales teams from reactive to proactive pipeline management.',
-        'Delivered predictive revenue forecasting scoring 98% accuracy against subsequent quarterly billing results.'
+        'Achieved 85%+ predictive accuracy in identifying accounts at high risk of churning before contract expiration.',
+        'Automated feature scaling and data prep pipelines on AWS cloud storage.',
+        'Surfaced actionable retention insights to mitigate customer revenue loss.'
       ]
     },
     hr: {
       category: 'Data Analytics',
       title: 'HR Retention Intelligence & Recruitment Analytics',
-      tech: ['SQL', 'Power BI', 'Python (Pandas)', 'Excel'],
+      tech: ['SQL', 'Power BI', 'Python (Pandas)', 'Excel', 'DAX'],
       img: 'assets/hr.svg',
       liveUrl: '',
-      githubUrl: '',
+      githubUrl: 'https://github.com/ritikyadav-io/hr-analytics',
       metrics: [
         { val: '50+', lbl: 'KPIs Evaluated' },
         { val: '30%', lbl: 'Attrition Risk Drop' },
@@ -175,16 +174,16 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     resume: {
-      category: 'AI Tools',
+      category: 'AI Tools & Data NLP',
       title: 'AI Resume Compatibility Analyzer & ATS Optimizer',
       tech: ['Claude API', 'LangChain', 'Next.js', 'Python', 'PDF-Parser'],
       img: 'assets/resume.svg',
-      liveUrl: '',
-      githubUrl: '',
+      liveUrl: 'https://elevatecvapp.vercel.app',
+      githubUrl: 'https://github.com/ritikyadav-io/ElevateCv',
       metrics: [
         { val: '100+', lbl: 'Analysis Runs' },
         { val: '65 → 90+', lbl: 'Score Boost' },
-        { val: 'Keyword', lbl: 'Suggestions' }
+        { val: 'Keyword', lbl: 'Extraction' }
       ],
       problem: 'Job applications are silently rejected by Applicant Tracking Systems due to poor keyword density, formatting issues, and mismatched skill phrasing — candidates have no visibility into why.',
       solution: 'Built an intelligent resume analyzer that parses PDF uploads, performs semantic comparison against job descriptions, generates ATS compatibility scores, and writes actionable improvement recommendations.',
